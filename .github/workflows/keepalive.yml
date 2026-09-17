@@ -1,0 +1,44 @@
+# Supabase 무료 프로젝트는 7일간 DB 요청이 없으면 일시정지된다.
+# 매일 새벽(03:00 KST) 공지사항 테이블을 한 번 조회해서 "활동"을 만들어 정지를 막는다.
+# (publishable key 는 브라우저에 공개되는 키라 여기 적어도 무방)
+name: Supabase keep-alive
+
+on:
+  schedule:
+    - cron: '0 18 * * *'      # 매일 18:00 UTC = 03:00 KST
+  workflow_dispatch:           # Actions 탭에서 수동 실행도 가능
+
+permissions:
+  contents: write
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Supabase 조회 (정지 방지)
+        run: |
+          URL="https://fpbmlhawihcdlwlmacmu.supabase.co"
+          KEY="sb_publishable_eqlY5dGrDMzE2JL_5kUVLw_iA6OMojF"
+          code=$(curl -s -o /dev/null -w '%{http_code}' \
+            -H "apikey: $KEY" -H "Authorization: Bearer $KEY" \
+            "$URL/rest/v1/notices?select=id&limit=1")
+          echo "Supabase 응답: $code"
+          test "$code" = "200"
+
+      # GitHub 은 public 저장소에서 60일간 커밋이 없으면 예약 워크플로를 자동 비활성화한다.
+      # 마지막 커밋이 45일 넘게 지났으면 날짜 파일을 갱신하는 빈 커밋으로 저장소 활동을 만든다.
+      - uses: actions/checkout@v4
+      - name: 저장소 활동 유지 (45일 이상 커밋 없을 때만)
+        run: |
+          last=$(git log -1 --format=%ct)
+          now=$(date +%s)
+          days=$(( (now - last) / 86400 ))
+          echo "마지막 커밋 후 ${days}일"
+          if [ "$days" -ge 45 ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            date -u +%F > .keepalive
+            git add .keepalive
+            git commit -m "keep-alive: 예약 워크플로 비활성화 방지"
+            git push
+          fi

@@ -92,3 +92,7 @@ GitHub Pages 는 10분 캐시(`max-age=600`)라 수정 직후 브라우저에 �
 python3 tools/bump_assets.py
 ```
 를 실행해 `?v=` 버전을 올리면 모든 방문자가 즉시 새 파일을 받는다.
+
+### 무료 플랜 잠김 방지
+- `.github/workflows/keepalive.yml`: 매일 03:00(KST) Supabase 를 한 번 조회해 7일 비활성 정지를 막음. 45일 이상 커밋이 없으면 `.keepalive` 파일을 갱신하는 커밋을 만들어 GitHub 의 예약 워크플로 자동 비활성화(60일 규칙)도 피함
+- GitHub Pages 자체는 잠기는 개념이 없음. 나중에 Cloudflare Pages 로 옮기면 이 워크플로 대신 Cloudflare Cron Trigger 로 바꿔도 됨
