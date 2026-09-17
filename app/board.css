@@ -1,0 +1,73 @@
+/* 관리자 기능·동적 게시판용 최소 추가 스타일 (기존 사이트 디자인은 그대로, 여기선 추가분만) */
+
+/* 관리자 버튼 (기존 .btn_bo_user 스타일 재사용) */
+.btn_bo_user.app-admin { float: right; }
+.btn_bo_user.app-admin li.board-write-btn a { padding: 0 14px; cursor: pointer; }
+.btn_bo_user.app-admin li.board-write-btn a.app-danger { color: #d33; border-color: #e5a0a0; }
+#bo_v_top .btn_bo_user li.board-write-btn { margin-left: 5px; }
+#bo_v_top .btn_bo_user li.board-write-btn a { padding: 0 12px; cursor: pointer; }
+#bo_v_top .btn_bo_user li.board-write-btn a.app-danger { color: #d33; border-color: #e5a0a0; }
+
+/* 글쓰기/수정 폼 */
+#bo_w { width: 100%; }
+#bo_w .inner { padding-top: 30px; }
+#bo_w .bo_w_title { font-size: 1.6em; font-weight: 600; margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid #656565; }
+.app-form .write_div { margin: 0 0 14px; }
+.app-form .write_div > label { display: block; font-weight: 600; margin-bottom: 6px; color: #141414; }
+.app-form .frm_input, .app-form select.frm_input { width: 100%; height: 42px; box-sizing: border-box; font-size: 15px; }
+.app-form textarea.frm_input { width: 100%; height: 280px; padding: 10px; line-height: 1.6; resize: vertical; }
+.app-form textarea.frm_input.short { height: 120px; }
+.app-form .frm_info { display: block; font-size: 12px; color: #888; margin-top: 4px; line-height: 1.5; }
+.app-form .chk_box { display: flex; align-items: center; gap: 8px; }
+.app-form .btn_confirm { margin-top: 20px; text-align: center; }
+.app-form .btn_confirm .btn { height: 42px; line-height: 42px; padding: 0 28px; font-size: 15px; margin: 0 4px; border-radius: 3px; }
+.app-form .btn_confirm .btn_cancel { display: inline-block; }
+.app-form .btn_submit:disabled { opacity: .6; cursor: not-allowed; }
+.app-msg { display: block; margin: 0 0 14px; padding: 10px 14px; border-radius: 4px; font-size: 14px; background: #fff1f1; color: #a11; border: 1px solid #f3c2c2; }
+.app-msg.info { background: #eef6ff; color: #124; border-color: #cfe3fb; }
+.app-progress { height: 8px; background: #e5e7eb; border-radius: 999px; overflow: hidden; margin: 6px 0 14px; }
+.app-progress > i { display: block; height: 100%; width: 0; background: #3a8afd; transition: width .2s; }
+.app-filelist { font-size: 13px; color: #666; margin-top: 6px; line-height: 1.6; }
+
+/* 갤러리 상세: 사진·동영상 나열 */
+#bo_v_con .app-media { margin: 0 0 24px; }
+#bo_v_con .app-media img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+#bo_v_con .app-media video { display: block; width: 100%; max-height: 80vh; background: #000; }
+#bo_v_con .app-media .app-embed { position: relative; padding-top: 56.25%; background: #000; }
+#bo_v_con .app-media .app-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+#bo_v_con .app-media .app-media-del { text-align: right; margin-top: 4px; }
+#bo_v_con .app-media .app-media-del a { font-size: 12px; color: #d33; text-decoration: none; cursor: pointer; }
+
+/* 인증서: PDF 미리보기 영역 + 관리자 버튼 */
+.partner_type1 .partner_list ul li.cert-item { position: relative; padding: 0 0 10px; }
+.partner_type1 .partner_list ul li.cert-item .cert-pdf { width: 100%; height: 420px; border: 0; display: block; background: #f3f4f6; }
+.partner_type1 .partner_list ul li.cert-item .cert-title { margin: 10px 8px 0; font-weight: 600; color: #141414; font-size: 15px; }
+.partner_type1 .partner_list ul li.cert-item .cert-desc { margin: 4px 8px 0; font-size: 13px; color: #666; white-space: pre-line; }
+.partner_type1 .partner_list ul li.cert-item .cert-links { margin: 6px 8px 0; font-size: 12px; }
+.partner_type1 .partner_list ul li.cert-item .cert-links a { color: #3a8afd; margin-right: 10px; }
+.partner_type1 .partner_list ul li.cert-item .cert-admin { position: absolute; top: 8px; right: 8px; display: flex; gap: 4px; }
+.partner_type1 .partner_list ul li.cert-item .cert-admin a { background: #fff; border: 1px solid #737373; font-size: 12px; line-height: 26px; padding: 0 10px; color: #141414; cursor: pointer; text-decoration: none; }
+.partner_type1 .partner_list ul li.cert-item .cert-admin a.app-danger { color: #d33; border-color: #e5a0a0; }
+#cert-toolbar { max-width: 1100px; margin: 0 auto; text-align: right; padding: 0 0 10px; }
+#cert-toolbar a { display: inline-block; border: 1px solid #737373; line-height: 32px; padding: 0 14px; font-size: 14px; color: #141414; text-decoration: none; cursor: pointer; }
+#cert-form-wrap { max-width: 1100px; margin: 0 auto 40px; padding: 0 16px; }
+#cert-form-wrap .bo_w_title { font-size: 1.4em; font-weight: 600; margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid #656565; }
+
+/* 로그인/회원가입 박스 안 메시지 */
+#mb_login .app-msg { margin: 0 0 12px; }
+#mb_login #login_fs .frm_input.app-input { margin-bottom: 8px; }
+
+/* 헤더 로그아웃 */
+#gnb .gnb_1da.app-logout { cursor: pointer; }
+
+/* 토스트 */
+#toast-box { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 10000; }
+.toast { background: #222; color: #fff; padding: 10px 16px; border-radius: 6px; font-size: 14px; box-shadow: 0 4px 14px rgba(0,0,0,.2); transition: opacity .3s; }
+.toast-error { background: #b3261e; }
+.toast-success { background: #1b7f3b; }
+.toast.hide { opacity: 0; }
+
+@media (max-width: 768px) {
+  .partner_type1 .partner_list ul li.cert-item .cert-pdf { height: 320px; }
+  .app-form textarea.frm_input { height: 200px; }
+}

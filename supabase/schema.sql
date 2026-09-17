@@ -239,6 +239,18 @@ drop policy if exists "gallery_media: 관리자 삭제" on public.gallery_media;
 create policy "gallery_media: 관리자 삭제"
   on public.gallery_media for delete to authenticated using (public.is_admin());
 
+-- 갤러리 조회수 (원본 화면의 "Hit" 표시용)
+alter table public.gallery_posts add column if not exists view_count integer not null default 0;
+create or replace function public.increment_gallery_view(p_id bigint)
+returns void
+language sql
+security definer
+set search_path = public
+as $$
+  update public.gallery_posts set view_count = view_count + 1 where id = p_id;
+$$;
+grant execute on function public.increment_gallery_view(bigint) to anon, authenticated;
+
 -- ---------------------------------------------------------------------
 -- 4. Storage 버킷 'gallery' (공개 읽기, 관리자만 업로드/삭제)
 --    - 파일당 50MB 제한 (무료 플랜 한도와 동일), 이미지·동영상만 허용
@@ -283,7 +295,7 @@ create table if not exists public.certificates (
   title         text not null check (char_length(title) between 1 and 200),
   description   text not null default '',
   file_type     text not null check (file_type in ('pdf', 'image')),
-  storage_path  text not null,          -- Storage 버킷 'certificates' 안의 경로
+  storage_path  text,                   -- Storage 버킷 'certificates' 안의 경로 (사이트 내 정적 파일이면 NULL)
   url           text not null,          -- 공개 URL
   file_name     text,
   file_size     bigint,
@@ -294,6 +306,7 @@ create table if not exists public.certificates (
   updated_at    timestamptz not null default now()
 );
 create index if not exists certificates_order_idx on public.certificates (sort_order, created_at desc);
+alter table public.certificates alter column storage_path drop not null;
 
 drop trigger if exists certificates_set_updated_at on public.certificates;
 create trigger certificates_set_updated_at

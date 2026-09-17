@@ -40,49 +40,48 @@ python3 -m http.server 8090 --directory /Users/ilo/dev/krwater
 
 ---
 
-## 게시판 앱 (`app/`) — Supabase 연동 (공지사항 · 뉴스 · 갤러리 · 관리자 로그인)
+## 관리자 기능 (Supabase 연동) — 기존 화면 그대로, 관리자에게만 버튼 추가
 
-정적 사이트(GitHub Pages / Cloudflare Pages)에서 그대로 동작하는 순수 HTML/JS 앱. 빌드 없음.
+정적 사이트(GitHub Pages / Cloudflare Pages)에서 그대로 동작. 빌드 없음. **화면 구조는 원본 그대로**이고, 게시판 데이터만 Supabase 에서 가져오며, 관리자로 로그인하면 글쓰기/수정/삭제 버튼이 나타난다.
+
+| 화면 (원본 경로 그대로) | 동작 |
+|---|---|
+| `bbs/board.php@bo_table=notice.html` (공지사항), `news01.html` (뉴스) | 목록·상세(`?id=`)·페이지. 관리자: 글쓰기 / 수정 / 삭제 / 상단고정 |
+| `bbs/board.php@bo_table=gallery.html` (시공사진) | 목록·상세. 관리자: 글쓰기, 사진·동영상 업로드, 유튜브 링크, 파일 삭제, 게시물 삭제 |
+| `theme/home/sub/certificate.php.html` (인증서) | 이미지는 그대로, PDF 는 미리보기 영역. 관리자: 등록 / 수정(파일 교체) / 삭제 |
+| `bbs/login.php.html`, `bbs/register.php.html` | 원본 로그인 박스 디자인, 제출만 Supabase Auth (아이디+비밀번호) |
+| 헤더 메뉴 "로그인" | 로그인하면 "관리자 · 로그아웃" 으로 바뀜 |
+| 메인 "시공사진" 4장 | 갤러리 최신 4건 (게시물 없으면 기존 사진 유지) |
 
 | 파일 | 역할 |
 |---|---|
-| `supabase/schema.sql` | 테이블(profiles·notices·gallery_posts·gallery_media·certificates)·RLS 정책·트리거·Storage 버킷 gallery/certificates (SQL Editor 에서 실행, 재실행 안전) |
-| `app/config.js` | Supabase URL / anon key 등 설정 (**여기만 채우면 됨**) |
-| `app/supabase.js` | 클라이언트, 로그인/가입/프로필 헬퍼 |
-| `app/ui.js`, `app/style.css` | 공통 헤더·유틸·스타일 |
-| `app/login.html`, `app/signup.html` | 로그인(아이디+비밀번호), 회원가입(사용자명·아이디·비밀번호) |
-| `app/notices.html` | 공지사항/뉴스 목록·상세, 관리자 작성·수정·삭제·상단고정 |
-| `app/gallery.html` | 갤러리 목록·상세, 관리자 사진/동영상 업로드·유튜브 링크·삭제 |
-| `app/certificates.html` | 인증서 목록·상세(PDF 미리보기/이미지), 관리자 등록·수정·삭제 |
-| `app/index.html` | 게시판 진입 페이지 |
-| `app/site-nav.js` | 메인 사이트 헤더의 '로그인' 메뉴를 로그인 상태에 맞게 표시 (정적 페이지에 삽입됨) |
-| `app/home-latest.js` | 메인 페이지 '시공사진' 영역을 갤러리 최신 4건으로 교체 (게시물 없으면 기존 사진 유지) |
+| `supabase/schema.sql` | 테이블(profiles·notices·gallery_posts·gallery_media·certificates)·RLS·트리거·Storage 버킷 (재실행 안전) |
+| `supabase/seed.sql` | 기존 시공사진 4건 + 인증서 1건을 DB 에 등록 (1회) |
+| `app/config.js` | Supabase URL / publishable key |
+| `app/supabase.js`, `app/ui.js` | 클라이언트·인증 헬퍼, 유틸 |
+| `app/board-notice.js`, `board-gallery.js`, `board-cert.js` | 각 화면에 삽입되는 모듈 (기존 스킨 마크업으로 렌더링) |
+| `app/auth-login.js`, `auth-signup.js`, `site-nav.js`, `home-latest.js` | 로그인/가입, 헤더 상태, 메인 최신 사진 |
+| `app/board.css` | 관리자 버튼·폼·토스트 등 추가분 스타일만 |
 
 ### 권한 구조
 - 비밀번호는 Supabase Auth 가 **bcrypt** 로 저장 (앱 코드·DB 테이블에 비밀번호 없음)
 - `profiles.role` = `user` | `admin`. **첫 번째 가입자가 자동 admin**, 이후 가입자는 user
-- 공지/갤러리 **조회는 누구나**, **작성·수정·삭제는 admin 만** — DB 의 RLS 정책이 강제하므로 프론트 코드를 고쳐도 우회 불가
-- 로그인 아이디는 내부적으로 `아이디@users.krwater.co.kr` 이메일로 변환해 Supabase Auth 에 저장 (실제 메일 수신 없음)
+- 조회는 누구나, **작성·수정·삭제는 admin 만** — DB 의 RLS 정책이 강제하므로 프론트 코드를 고쳐도 우회 불가
+- 로그인 아이디는 내부적으로 `아이디@users.krwater.co.kr` 이메일로 변환 (실제 메일 없음 → Auth 의 Confirm email OFF 필수)
 
 ### 설정 순서 (최초 1회)
-1. **프로젝트 생성**: supabase.com → New project → 이름 `krwater`, DB 비밀번호(보관), Region **Northeast Asia (Seoul)** → Create
-2. **스키마 실행**: 왼쪽 메뉴 SQL Editor → New query → `supabase/schema.sql` 전체 붙여넣기 → Run (초록색 Success 확인)
-3. **Auth 설정**: Authentication → Sign In / Providers → Email
-   - **Confirm email → OFF** (필수. 켜져 있으면 가입해도 로그인 불가)
-   - Allow new users to sign up → 일단 ON (관리자 가입 끝나면 OFF 권장 → 외부인 가입 차단)
-4. **키 복사**: Project Settings → API (또는 API Keys) → `Project URL` 과 `anon public` 키(새 대시보드면 `sb_publishable_…` 키도 가능) → `app/config.js` 의 `SUPABASE_URL`, `SUPABASE_ANON_KEY` 에 입력
-   - `service_role` / `sb_secret_…` 키는 **절대 저장소에 넣지 말 것**
-5. **커밋·푸시** → GitHub Pages 반영 후 `https://ilopark.github.io/krwater/app/signup.html` 에서 **가장 먼저 가입** → 자동 관리자
-6. 추가 관리자: SQL Editor 에서 `update public.profiles set role = 'admin' where username = '아이디';`
+1. Supabase 프로젝트 (Region: Northeast Asia/Seoul) → SQL Editor 에서 `supabase/schema.sql` 실행 → `supabase/seed.sql` 실행
+2. Authentication → Sign In / Providers → Email: Enable ON, **Confirm email OFF**
+3. Settings → API Keys → Project URL, Publishable key → `app/config.js`
+4. 사이트 헤더 "로그인" → 회원가입에서 **가장 먼저 가입** → 자동 관리자. 이후 Authentication → "Allow new users to sign up" OFF
+5. 추가 관리자: `update public.profiles set role = 'admin' where username = '아이디';`
 
 ### 로컬 테스트
 ```bash
 python3 -m http.server 8090 --directory /Users/ilo/dev/krwater
-# → http://localhost:8090/app/
 ```
-(`file://` 로 열면 ES 모듈이 막혀서 안 됨. 반드시 http 서버로)
+(`file://` 로 열면 ES 모듈이 막혀서 안 됨)
 
 ### 운영 메모
-- Supabase 무료 플랜은 **7일간 DB 요청이 없으면 일시정지** → 대시보드에서 Resume. 방문자가 조금이라도 있으면 안 걸림. 확실히 막으려면 GitHub Actions/Cloudflare Cron 으로 3일마다 `select 1` 호출
-- 갤러리 사진은 업로드 전 브라우저에서 긴 변 1600px 로 축소(JPEG 85%) → 무료 Storage 1GB / 트래픽 5GB 절약
-- 동영상은 파일당 50MB(무료 플랜 한도). 큰 영상은 유튜브에 올리고 링크로 첨부
+- Supabase 무료 플랜은 7일간 DB 요청이 없으면 일시정지 → 대시보드에서 Resume
+- 갤러리 사진은 업로드 전 브라우저에서 긴 변 1600px 로 축소. 동영상은 파일당 50MB, 큰 영상은 유튜브 링크

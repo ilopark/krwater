@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="site-root" content="../">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta property="og:type" content="website">
+<meta property="og:title" content="대한수자원">
+<meta property="og:description" content="대한수자원의 특허받은 기술력, 대용량 심층 지하수를 공당 5,000t/일 이상 개발">
+<meta property="og:url" content="https://krwater.co.kr/">
+<meta property="og:image" content="https://krwater.co.kr/img/logo_big.jpg">
+
+<title>로그인 | 대한수자원</title>
+<link rel="stylesheet" href="../theme/home/css/default.css@ver=210618.css">
+<link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min.css@ver=210618.css">
+<link rel="stylesheet" href="../skin/member/basic/style.css@ver=210618.css">
+<!--[if lte IE 8]>
+<script src="https://krwater.co.kr/js/html5.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="https://krwater.co.kr/bbs/파일이름.ico">
+<link rel="icon" href="https://krwater.co.kr/bbs/파일이름.ico">
+<link rel="shortcut icon" href="https://krwater.co.kr/bbs/favicon.ico" type="image/x-icon">
+
+<link rel="stylesheet" href="../theme/home/css/common/reset.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+<link rel="stylesheet" href="../theme/home/css/main.css">
+<link rel="stylesheet" href="../theme/home/css/common/head.css">
+<link rel="stylesheet" href="../theme/home/css/common/footer.css">
+<link rel="stylesheet" href="../theme/home/css/common/font.css">
+<link rel="stylesheet" href="../theme/home/css/common/common.css">
+<link rel="stylesheet" href="../theme/home/css/common/board.css">
+<link rel="stylesheet" href="../theme/home/css/common/user.css">
+<link rel="stylesheet" href="../theme/home/css/sub/company.css">
+<link rel="stylesheet" href="../theme/home/css/sub/greeting.css">
+<link rel="stylesheet" href="../theme/home/css/sub/business.css">
+<link rel="stylesheet" href="../theme/home/css/sub/map.css">
+
+<!-- <link rel="stylesheet" href="https://krwater.co.kr/theme/home/css/board/list.css">
+<link rel="stylesheet" href="https://krwater.co.kr/theme/home/css/board/gallery.css">
+<link rel="stylesheet" href="https://krwater.co.kr/theme/home/css/board/webzine.css"> -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var g5_url       = "https://krwater.co.kr";
+var g5_bbs_url   = "https://krwater.co.kr/bbs";
+var g5_is_member = "";
+var g5_is_admin  = "";
+var g5_is_mobile = "";
+var g5_bo_table  = "";
+var g5_sca       = "";
+var g5_editor    = "";
+var g5_cookie_domain = "";
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+
+
+
+<script src="../js/jquery-1.12.4.min.js@ver=210618"></script>
+<script src="../js/jquery-migrate-1.4.1.min.js@ver=210618"></script>
+<script src="../js/jquery.menu.js@ver=210618"></script>
+<script src="../js/common.js@ver=210618"></script>
+<script src="../js/wrest.js@ver=210618"></script>
+<script src="../js/placeholders.min.js@ver=210618"></script>
+<link rel="stylesheet" href="../app/board.css">
+</head>
+<body>
+
+<!-- 로그인 시작 { -->
+<div id="mb_login" class="mbskin">
+    <div class="mbskin_box">
+        <h1>로그인</h1>
+        <div class="mb_log_cate">
+            <h2><span class="sound_only">회원</span>로그인</h2>
+            <a href="register.php.html" class="join">회원가입</a>
+        </div>
+        <form name="flogin" id="flogin" method="post" autocomplete="on">
+        
+        <fieldset id="login_fs">
+            <legend>회원로그인</legend>
+            <p id="login-msg" class="app-msg" style="display:none"></p>
+            <label for="login_id" class="sound_only">회원아이디<strong class="sound_only"> 필수</strong></label>
+            <input type="text" name="mb_id" id="login_id" required class="frm_input required app-input" autocomplete="username" size="20" maxLength="20" placeholder="아이디">
+            <label for="login_pw" class="sound_only">비밀번호<strong class="sound_only"> 필수</strong></label>
+            <input type="password" name="mb_password" id="login_pw" required class="frm_input required app-input" autocomplete="current-password" size="20" maxLength="20" placeholder="비밀번호">
+            <button type="submit" class="btn_submit">로그인</button>
+            
+            
+        </fieldset> 
+        </form>
+            </div>
+
+        
+	<!-- 주문하기, 신청하기 -->
+	
+        
+</div>
+
+
+<!-- } 로그인 끝 -->
+
+
+
+<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
+<!--[if lte IE 7]>
+<script>
+$(function() {
+    var $sv_use = $(".sv_use");
+    var count = $sv_use.length;
+
+    $sv_use.each(function() {
+        $(this).css("z-index", count);
+        $(this).css("position", "relative");
+        count = count - 1;
+    });
+});
+</script>
+<![endif]-->
+
+<script type="module" src="../app/auth-login.js"></script>
+</body>
+</html>

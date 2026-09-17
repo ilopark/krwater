@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
+<meta name="site-root" content="">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta property="og:type" content="website">
@@ -66,6 +67,7 @@ var g5_cookie_domain = "";
 <script src="js/common.js@ver=210618"></script>
 <script src="js/wrest.js@ver=210618"></script>
 <script src="js/placeholders.min.js@ver=210618"></script>
+<link rel="stylesheet" href="app/board.css">
 </head>
 <body>
 
@@ -137,10 +139,10 @@ $(function() {
                         <a href="theme/home/sub/introduce.php.html" target="_self" class="gnb_1da">회사소개</a>
                         <span class="bg">하위분류</span><ul class="gnb_2dul">
                     <li class="gnb_2dli"><a href="theme/home/sub/introduce.php.html" target="_self" class="gnb_2da">인사말</a></li>
-                                        <li class="gnb_2dli"><a href="app/certificates.html" target="_self" class="gnb_2da">인증서</a></li>
+                                        <li class="gnb_2dli"><a href="theme/home/sub/certificate.php.html" target="_self" class="gnb_2da">인증서</a></li>
                                         <li class="gnb_2dli"><a href="theme/home/sub/organization.php.html" target="_self" class="gnb_2da">조직도</a></li>
                                         <li class="gnb_2dli"><a href="theme/home/sub/map.php.html" target="_self" class="gnb_2da">오시는길</a></li>
-</ul>
+                    </ul>
                     </li>
                                         <li class="gnb_1dli " style="z-index:998">
                         <a href="theme/home/sub/pro07.php.html" target="_self" class="gnb_1da">사업소개</a>
@@ -149,19 +151,19 @@ $(function() {
                     </ul>
                     </li>
                                         <li class="gnb_1dli " style="z-index:997">
-                        <a href="app/gallery.html" target="_self" class="gnb_1da">시공사진</a>
+                        <a href="bbs/board.php@bo_table=gallery.html" target="_self" class="gnb_1da">시공사진</a>
                         <span class="bg">하위분류</span><ul class="gnb_2dul">
-                    <li class="gnb_2dli"><a href="app/gallery.html" target="_self" class="gnb_2da">갤러리</a></li>
+                    <li class="gnb_2dli"><a href="bbs/board.php@bo_table=gallery.html" target="_self" class="gnb_2da">갤러리</a></li>
                     </ul>
                     </li>
                                         <li class="gnb_1dli " style="z-index:996">
-                        <a href="app/notices.html?category=notice" target="_self" class="gnb_1da">고객센터</a>
+                        <a href="bbs/board.php@bo_table=notice.html" target="_self" class="gnb_1da">고객센터</a>
                         <span class="bg">하위분류</span><ul class="gnb_2dul">
-                    <li class="gnb_2dli"><a href="app/notices.html?category=notice" target="_self" class="gnb_2da">공지사항</a></li>
-                                        <li class="gnb_2dli"><a href="app/notices.html?category=news" target="_self" class="gnb_2da">뉴스</a></li>
+                    <li class="gnb_2dli"><a href="bbs/board.php@bo_table=notice.html" target="_self" class="gnb_2da">공지사항</a></li>
+                                        <li class="gnb_2dli"><a href="bbs/board.php@bo_table=news01.html" target="_self" class="gnb_2da">뉴스</a></li>
                     </ul>
                     </li>
-                                                        <li class="gnb_1dli" style="z-index:995"><a href="app/login.html" target="_self" class="gnb_1da" id="site-auth-link">로그인</a></li>
+                                                        <li class="gnb_1dli" style="z-index:995"><a href="bbs/login.php.html" target="_self" class="gnb_1da" id="site-auth-link">로그인</a></li>
 </ul>
                 <div id="gnb_all">
                     <h2>전체메뉴</h2>
@@ -170,7 +172,7 @@ $(function() {
                             <a href="theme/home/sub/introduce.php.html" target="_self" class="gnb_al_a">회사소개</a>
                             <ul>
                         <li><a href="theme/home/sub/introduce.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 인사말</a></li>
-                                                <li><a href="app/certificates.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 인증서</a></li>
+                                                <li><a href="theme/home/sub/certificate.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 인증서</a></li>
                                                 <li><a href="theme/home/sub/organization.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 조직도</a></li>
                                                 <li><a href="theme/home/sub/map.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 오시는길</a></li>
                         </ul>
@@ -182,16 +184,16 @@ $(function() {
                         </ul>
                         </li>
                                                 <li class="gnb_al_li">
-                            <a href="app/gallery.html" target="_self" class="gnb_al_a">시공사진</a>
+                            <a href="bbs/board.php@bo_table=gallery.html" target="_self" class="gnb_al_a">시공사진</a>
                             <ul>
-                        <li><a href="app/gallery.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 갤러리</a></li>
+                        <li><a href="bbs/board.php@bo_table=gallery.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 갤러리</a></li>
                         </ul>
                         </li>
                                                 <li class="gnb_al_li">
-                            <a href="app/notices.html?category=notice" target="_self" class="gnb_al_a">고객센터</a>
+                            <a href="bbs/board.php@bo_table=notice.html" target="_self" class="gnb_al_a">고객센터</a>
                             <ul>
-                        <li><a href="app/notices.html?category=notice" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 공지사항</a></li>
-                                                <li><a href="app/notices.html?category=news" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 뉴스</a></li>
+                        <li><a href="bbs/board.php@bo_table=notice.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 공지사항</a></li>
+                                                <li><a href="bbs/board.php@bo_table=news01.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 뉴스</a></li>
                         </ul>
                         </li>
                                             </ul>
@@ -480,30 +482,30 @@ function btnScroll() {
                     </div>
                     
 <div class="pic_lt" >
-    <h2 class="lat_title"><a href="app/gallery.html">시공사진</a></h2>
+    <h2 class="lat_title"><a href="bbs/board.php@bo_table=gallery.html">시공사진</a></h2>
     <ul>
             <li>
-            <a href="app/gallery.html" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442_500x500.jpg" alt="" ></a>
-            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="app/gallery.html" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>04</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
+            <a href="bbs/board.php@bo_table=gallery.html?id=4" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442_500x500.jpg" alt="" ></a>
+            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="bbs/board.php@bo_table=gallery.html?id=4" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>04</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
             <span class="lt_date" style="padding:10px"><i class="fa fa-clock-o" aria-hidden="true"></i>10-28</span>
         </li>
             <li>
-            <a href="app/gallery.html" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686_500x500.jpg" alt="" ></a>
-            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="app/gallery.html" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>03</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
+            <a href="bbs/board.php@bo_table=gallery.html?id=3" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686_500x500.jpg" alt="" ></a>
+            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="bbs/board.php@bo_table=gallery.html?id=3" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>03</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
             <span class="lt_date" style="padding:10px"><i class="fa fa-clock-o" aria-hidden="true"></i>10-28</span>
         </li>
             <li>
-            <a href="app/gallery.html" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068_500x500.jpg" alt="" ></a>
-            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="app/gallery.html" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>02</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
+            <a href="bbs/board.php@bo_table=gallery.html?id=2" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068_500x500.jpg" alt="" ></a>
+            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="bbs/board.php@bo_table=gallery.html?id=2" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>02</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
             <span class="lt_date" style="padding:10px"><i class="fa fa-clock-o" aria-hidden="true"></i>10-28</span>
         </li>
             <li>
-            <a href="app/gallery.html" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769_500x500.jpg" alt="" ></a>
-            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="app/gallery.html" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>01</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769.jpg"><br style="clear:both;">&nbsp;</p><p>수맥탐사&nbsp;</p><p><br></p><p><br></p></p></div></div></a>
+            <a href="bbs/board.php@bo_table=gallery.html?id=1" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769_500x500.jpg" alt="" ></a>
+            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="bbs/board.php@bo_table=gallery.html?id=1" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>01</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769.jpg"><br style="clear:both;">&nbsp;</p><p>수맥탐사&nbsp;</p><p><br></p><p><br></p></p></div></div></a>
             <span class="lt_date" style="padding:10px"><i class="fa fa-clock-o" aria-hidden="true"></i>10-28</span>
         </li>
             </ul>
-    <a href="app/gallery.html" class="lt_more"><span class="sound_only">시공사진</span><i class="fa fa-plus" aria-hidden="true"></i><span class="sound_only"> 더보기</span></a>
+    <a href="bbs/board.php@bo_table=gallery.html" class="lt_more"><span class="sound_only">시공사진</span><i class="fa fa-plus" aria-hidden="true"></i><span class="sound_only"> 더보기</span></a>
 
 </div>
                 </div>
@@ -576,16 +578,15 @@ function btnScroll() {
                 <label for="auto_login" id="auto_login_label">자동로그인</label>
             </div>
             <div id="ol_svc">
-                <a href="https://krwater.co.kr/bbs/register.php"><b>회원가입</b></a> /
-                <a href="https://krwater.co.kr/bbs/password_lost.php" id="ol_password_lost">정보찾기</a>
+                <a href="https://krwater.co.kr/bbs/register.php"><b>회원가입</b></a>
             </div>
         </div>
         
     </fieldset>
     </form>
 -->
-    <div class="buttons join"><a href="app/signup.html"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a></div>
-    <div class="buttons login"><a href="app/login.html"><b><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인</b></a></div>
+    <div class="buttons join"><a href="bbs/register.php.html"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a></div>
+    <div class="buttons login"><a href="bbs/login.php.html"><b><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인</b></a></div>
 </section>
 
 <script>
@@ -621,7 +622,7 @@ function fhead_submit(f)
 
                 <ul class="mb-submmenu-list">
                             <li><a href="theme/home/sub/introduce.php.html" target="_self"><i class="xi-subdirectory"></i>인사말</a></li>
-                                                        <li><a href="app/certificates.html" target="_self"><i class="xi-subdirectory"></i>인증서</a></li>
+                                                        <li><a href="theme/home/sub/certificate.php.html" target="_self"><i class="xi-subdirectory"></i>인증서</a></li>
                                                         <li><a href="theme/home/sub/organization.php.html" target="_self"><i class="xi-subdirectory"></i>조직도</a></li>
                                                         <li><a href="theme/home/sub/map.php.html" target="_self"><i class="xi-subdirectory"></i>오시는길</a></li>
                             </ul>
@@ -636,22 +637,22 @@ function fhead_submit(f)
                             </ul>
                     </li>
                         <li class="mobile-list">
-                <a href="app/gallery.html" target="_self" class="gnb_1da" data-hover="시공사진">시공사진                </a>
+                <a href="bbs/board.php@bo_table=gallery.html" target="_self" class="gnb_1da" data-hover="시공사진">시공사진                </a>
 
                 <div class="menu-arrow"> <i class="xi-angle-down-min"></i></div>
 
                 <ul class="mb-submmenu-list">
-                            <li><a href="app/gallery.html" target="_self"><i class="xi-subdirectory"></i>갤러리</a></li>
+                            <li><a href="bbs/board.php@bo_table=gallery.html" target="_self"><i class="xi-subdirectory"></i>갤러리</a></li>
                             </ul>
                     </li>
                         <li class="mobile-list">
-                <a href="app/notices.html?category=notice" target="_self" class="gnb_1da" data-hover="고객센터">고객센터                </a>
+                <a href="bbs/board.php@bo_table=notice.html" target="_self" class="gnb_1da" data-hover="고객센터">고객센터                </a>
 
                 <div class="menu-arrow"> <i class="xi-angle-down-min"></i></div>
 
                 <ul class="mb-submmenu-list">
-                            <li><a href="app/notices.html?category=notice" target="_self"><i class="xi-subdirectory"></i>공지사항</a></li>
-                                                        <li><a href="app/notices.html?category=news" target="_self"><i class="xi-subdirectory"></i>뉴스</a></li>
+                            <li><a href="bbs/board.php@bo_table=notice.html" target="_self"><i class="xi-subdirectory"></i>공지사항</a></li>
+                                                        <li><a href="bbs/board.php@bo_table=news01.html" target="_self"><i class="xi-subdirectory"></i>뉴스</a></li>
                             </ul>
                     </li>
                     </ul>

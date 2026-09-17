@@ -1,15 +1,22 @@
-// 메인 사이트(정적 페이지) 헤더의 "로그인" 메뉴를 로그인 상태에 맞게 바꿈
-import { getProfile } from './supabase.js';
+// 사이트 헤더 "로그인" 메뉴: 로그인 상태면 "이름 · 로그아웃" 으로 표시
+import { getProfile, signOut } from './supabase.js';
+import { toast } from './ui.js';
 
 const link = document.getElementById('site-auth-link');
 if (link) {
   try {
     const profile = await getProfile();
     if (profile) {
-      const appDir = link.getAttribute('href').replace(/login\.html$/, '');
-      link.textContent = profile.role === 'admin' ? `관리자 (${profile.display_name})` : profile.display_name;
-      link.setAttribute('href', `${appDir}index.html`);
-      link.title = '게시판 관리로 이동';
+      link.textContent = `${profile.role === 'admin' ? '관리자' : profile.display_name} · 로그아웃`;
+      link.title = `${profile.display_name} 로그아웃`;
+      link.classList.add('app-logout');
+      link.setAttribute('href', '#');
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await signOut();
+        toast('로그아웃 되었습니다.');
+        setTimeout(() => location.reload(), 400);
+      });
     }
-  } catch (e) { /* 연결 실패 시 그대로 '로그인' 유지 */ }
+  } catch (e) { /* 연결 실패 시 '로그인' 유지 */ }
 }
