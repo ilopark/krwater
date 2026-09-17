@@ -1,7 +1,7 @@
 // 시공사진(갤러리) — 기존 갤러리 스킨 마크업 그대로, 데이터만 Supabase. 관리자만 글쓰기/수정/삭제/파일추가
-import { sb, getProfile, humanError } from './supabase.js';
-import { GALLERY_BUCKET, MAX_IMAGE_EDGE, IMAGE_QUALITY, MAX_VIDEO_MB, PAGE_SIZE } from './config.js';
-import { esc, nl2br, fmtDate, fmtDateShort, fmtBytes, qs, toast, setBusy, youtubeId, resolveUrl, shrinkImage, safeName } from './ui.js';
+import { sb, getProfile, humanError } from './supabase.js?v=202609171421';
+import { GALLERY_BUCKET, MAX_IMAGE_EDGE, IMAGE_QUALITY, MAX_VIDEO_MB, PAGE_SIZE } from './config.js?v=202609171421';
+import { esc, nl2br, fmtDate, fmtDateShort, fmtBytes, qs, toast, setBusy, youtubeId, resolveUrl, shrinkImage, safeName } from './ui.js?v=202609171421';
 
 const $ = (id) => document.getElementById(id);
 const listEl = $('bo_gall') || $('bo_list'), viewEl = $('bo_v'), formEl = $('bo_w');   // 갤러리 스킨은 #bo_gall

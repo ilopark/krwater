@@ -85,3 +85,10 @@ python3 -m http.server 8090 --directory /Users/ilo/dev/krwater
 ### 운영 메모
 - Supabase 무료 플랜은 7일간 DB 요청이 없으면 일시정지 → 대시보드에서 Resume
 - 갤러리 사진은 업로드 전 브라우저에서 긴 변 1600px 로 축소. 동영상은 파일당 50MB, 큰 영상은 유튜브 링크
+
+### JS/CSS 수정 후
+GitHub Pages 는 10분 캐시(`max-age=600`)라 수정 직후 브라우저에 옛 파일이 남을 수 있음. JS/CSS 를 고쳤으면 커밋 전에
+```bash
+python3 tools/bump_assets.py
+```
+를 실행해 `?v=` 버전을 올리면 모든 방문자가 즉시 새 파일을 받는다.

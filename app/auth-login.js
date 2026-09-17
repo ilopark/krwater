@@ -1,6 +1,6 @@
 // 기존 로그인 화면(bbs/login.php.html) 그대로, 제출만 Supabase 로 처리
-import { signIn, humanError, getSession } from './supabase.js';
-import { qs, setBusy } from './ui.js';
+import { signIn, humanError, getSession } from './supabase.js?v=202609171421';
+import { qs, setBusy } from './ui.js?v=202609171421';
 
 const form = document.getElementById('flogin');
 const msg = document.getElementById('login-msg');

@@ -1,7 +1,7 @@
 // 인증서 — 기존 인증서 화면(그리드) 그대로. 이미지는 그대로 표시, PDF 는 미리보기 영역. 관리자만 등록/수정/삭제
-import { sb, getProfile, humanError } from './supabase.js';
-import { IMAGE_QUALITY } from './config.js';
-import { esc, toast, setBusy, resolveUrl, shrinkImage, safeName } from './ui.js';
+import { sb, getProfile, humanError } from './supabase.js?v=202609171421';
+import { IMAGE_QUALITY } from './config.js?v=202609171421';
+import { esc, toast, setBusy, resolveUrl, shrinkImage, safeName } from './ui.js?v=202609171421';
 
 const BUCKET = 'certificates', MAX_MB = 20, MAX_EDGE = 2000;
 const $ = (id) => document.getElementById(id);
