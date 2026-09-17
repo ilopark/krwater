@@ -14,14 +14,14 @@ python3 -m http.server 8090 --directory /Users/ilo/dev/krwater
 |---|---|
 | `/` | `index.html` |
 | `/theme/home/sub/introduce.php` (인사말) | `theme/home/sub/introduce.php.html` |
-| `/theme/home/sub/certificate.php` (인증서) | `theme/home/sub/certificate.php.html` |
+| `/theme/home/sub/certificate.php` (인증서) | ~~삭제~~ → `app/certificates.html` |
 | `/theme/home/sub/organization.php` (조직도) | `theme/home/sub/organization.php.html` |
 | `/theme/home/sub/map.php` (오시는길) | `theme/home/sub/map.php.html` |
 | `/theme/home/sub/pro07.php` (심층지하수 개발) | `theme/home/sub/pro07.php.html` |
-| `/bbs/board.php?bo_table=gallery` (시공사진) | `bbs/board.php@bo_table=gallery.html` (+ wr_id=1~4 상세) |
-| `/bbs/board.php?bo_table=notice` (공지사항) | `bbs/board.php@bo_table=notice.html` |
-| `/bbs/board.php?bo_table=news01` (뉴스) | `bbs/board.php@bo_table=news01.html` |
-| `/bbs/login.php`, `register.php`, `password_lost.php` | `bbs/*.php.html` (화면만, 동작 안 함) |
+| `/bbs/board.php?bo_table=gallery` (시공사진) | ~~삭제~~ → `app/gallery.html` (Supabase) |
+| `/bbs/board.php?bo_table=notice` (공지사항) | ~~삭제~~ → `app/notices.html?category=notice` |
+| `/bbs/board.php?bo_table=news01` (뉴스) | ~~삭제~~ → `app/notices.html?category=news` |
+| `/bbs/login.php`, `register.php`, `password_lost.php` | ~~삭제~~ → `app/login.html`, `app/signup.html` |
 
 - CSS/JS/이미지/폰트: `theme/home/`, `js/`, `img/`, `data/editor/` 아래에 원본 경로 그대로
 - `?ver=210618` 같은 쿼리스트링은 파일명에서 `@ver=210618`로 치환됨
@@ -55,6 +55,8 @@ python3 -m http.server 8090 --directory /Users/ilo/dev/krwater
 | `app/gallery.html` | 갤러리 목록·상세, 관리자 사진/동영상 업로드·유튜브 링크·삭제 |
 | `app/certificates.html` | 인증서 목록·상세(PDF 미리보기/이미지), 관리자 등록·수정·삭제 |
 | `app/index.html` | 게시판 진입 페이지 |
+| `app/site-nav.js` | 메인 사이트 헤더의 '로그인' 메뉴를 로그인 상태에 맞게 표시 (정적 페이지에 삽입됨) |
+| `app/home-latest.js` | 메인 페이지 '시공사진' 영역을 갤러리 최신 4건으로 교체 (게시물 없으면 기존 사진 유지) |
 
 ### 권한 구조
 - 비밀번호는 Supabase Auth 가 **bcrypt** 로 저장 (앱 코드·DB 테이블에 비밀번호 없음)
