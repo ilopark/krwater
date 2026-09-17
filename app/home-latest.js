@@ -8,15 +8,21 @@ if (list) {
     const { data, error } = await sb.from('gallery_posts')
       .select('id, title, description, created_at, gallery_media(media_type, url, sort_order)')
       .order('created_at', { ascending: false }).limit(4);
-    if (!error && data && data.length) {
+    if (error) return;
+    if (!data || !data.length) {                       // 게시물이 없으면 영역 자체를 숨김
+      const sec = list.closest('.latest_area') || list.closest('.pic_lt');
+      if (sec) sec.style.display = 'none';
+      return;
+    }
+    {
       const pad = (n) => String(n).padStart(2, '0');
       list.innerHTML = data.map((p) => {
         const m = (p.gallery_media || []).slice().sort((a, b) => a.sort_order - b.sort_order)[0];
         const href = `bbs/board.php@bo_table=gallery.html?id=${p.id}`;
         let cover;
-        if (!m) cover = `<img src="theme/home/img/main/main_section_2.jpg" alt="">`;
+        if (!m) cover = `<span style="display:block;width:100%;aspect-ratio:1/1;background:#e9e9e9"></span>`;
         else if (m.media_type === 'image') cover = `<img src="${esc(resolveUrl(m.url))}" alt="${esc(p.title)}">`;
-        else if (m.media_type === 'embed') { const y = youtubeId(m.url); cover = `<img src="${y ? `https://img.youtube.com/vi/${y}/hqdefault.jpg` : 'theme/home/img/main/main_section_2.jpg'}" alt="">`; }
+        else if (m.media_type === 'embed') { const y = youtubeId(m.url); cover = y ? `<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="">` : `<span style="display:block;width:100%;aspect-ratio:1/1;background:#e9e9e9"></span>`; }
         else cover = `<video src="${esc(resolveUrl(m.url))}#t=0.5" muted preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>`;
         const d = new Date(p.created_at);
         const desc = (p.description || '').split('\n').filter(Boolean).slice(0, 2).map((t) => `<p>${esc(t)}</p>`).join('');
