@@ -29,6 +29,11 @@
 .app-progress > i { display: block; height: 100%; width: 0; background: #3a8afd; transition: width .2s; }
 .app-filelist { font-size: 13px; color: #666; margin-top: 6px; line-height: 1.6; }
 
+/* 갤러리 목록: 썸네일 4:3 통일 (사진·동영상 섞여도 카드 높이 동일) */
+#bo_gall .gall_img a { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #f3f4f6; }
+#bo_gall .gall_img a img, #bo_gall .gall_img a video { width: 100%; height: 100% !important; object-fit: cover; display: block; border: 0; }
+#bo_gall .gall_img a .no_image { display: block; width: 100%; height: 100%; line-height: 1; padding-top: 42%; box-sizing: border-box; }
+
 /* 갤러리 상세: 사진·동영상 나열 */
 #bo_v_con .app-media { margin: 0 0 24px; }
 #bo_v_con .app-media img { display: block; max-width: 100%; height: auto; margin: 0 auto; }

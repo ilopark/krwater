@@ -1,6 +1,6 @@
 // 메인 페이지 "시공사진" 영역을 갤러리 최신 4건으로 채움. 게시물이 없으면 영역 자체를 숨김
-import { sb } from './supabase.js?v=202609171421';
-import { esc, youtubeId, resolveUrl } from './ui.js?v=202609171421';
+import { sb } from './supabase.js?v=202609171438';
+import { esc, youtubeId, resolveUrl } from './ui.js?v=202609171438';
 
 async function renderLatest() {
   const list = document.querySelector('.pic_lt ul');

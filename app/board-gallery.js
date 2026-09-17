@@ -1,7 +1,7 @@
 // 시공사진(갤러리) — 기존 갤러리 스킨 마크업 그대로, 데이터만 Supabase. 관리자만 글쓰기/수정/삭제/파일추가
-import { sb, getProfile, humanError } from './supabase.js?v=202609171421';
-import { GALLERY_BUCKET, MAX_IMAGE_EDGE, IMAGE_QUALITY, MAX_VIDEO_MB, PAGE_SIZE } from './config.js?v=202609171421';
-import { esc, nl2br, fmtDate, fmtDateShort, fmtBytes, qs, toast, setBusy, youtubeId, resolveUrl, shrinkImage, safeName } from './ui.js?v=202609171421';
+import { sb, getProfile, humanError } from './supabase.js?v=202609171438';
+import { GALLERY_BUCKET, MAX_IMAGE_EDGE, IMAGE_QUALITY, MAX_VIDEO_MB, PAGE_SIZE } from './config.js?v=202609171438';
+import { esc, nl2br, fmtDate, fmtDateShort, fmtBytes, qs, toast, setBusy, youtubeId, resolveUrl, shrinkImage, safeName } from './ui.js?v=202609171438';
 
 const $ = (id) => document.getElementById(id);
 const listEl = $('bo_gall') || $('bo_list'), viewEl = $('bo_v'), formEl = $('bo_w');   // 갤러리 스킨은 #bo_gall
@@ -41,7 +41,6 @@ async function loadList(page) {
           <div class="gall_text_href">
             <a href="?id=${p.id}" class="bo_tit">
               <div class="gall-tit">${esc(p.title)}</div>
-              <div class="gall_content"><span class="sound_only">본문내용 </span>${nl2br((p.description || '').slice(0, 120))}</div>
               <div class="gall_info">
                 <span class="">Hit ${p.view_count ?? 0} </span><span class=""> </span><span class=""> </span>
                 <span class="gall_date"><span class="sound_only">작성일 </span> ${fmtDate(p.created_at)}</span>

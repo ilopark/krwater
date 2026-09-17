@@ -1,8 +1,8 @@
 // 공지사항 / 뉴스 게시판 — 기존 화면(그누보드 스킨 마크업) 그대로, 데이터만 Supabase 에서 가져오고
 // 관리자로 로그인했을 때만 글쓰기 / 수정 / 삭제 버튼이 보임
-import { sb, getProfile, humanError } from './supabase.js?v=202609171421';
-import { PAGE_SIZE } from './config.js?v=202609171421';
-import { esc, nl2br, fmtDate, fmtDateShort, qs, toast, setBusy } from './ui.js?v=202609171421';
+import { sb, getProfile, humanError } from './supabase.js?v=202609171438';
+import { PAGE_SIZE } from './config.js?v=202609171438';
+import { esc, nl2br, fmtDate, fmtDateShort, qs, toast, setBusy } from './ui.js?v=202609171438';
 
 const $ = (id) => document.getElementById(id);
 const boTable = document.querySelector('input[name="bo_table"]')?.value || 'notice';

@@ -1,6 +1,6 @@
 // 회원가입 — 사용자명 / 아이디 / 비밀번호. (비밀번호는 Supabase Auth 가 bcrypt 로 보관)
-import { signUp, humanError, getSession, USERNAME_RE } from './supabase.js?v=202609171421';
-import { setBusy } from './ui.js?v=202609171421';
+import { signUp, humanError, getSession, USERNAME_RE } from './supabase.js?v=202609171438';
+import { setBusy } from './ui.js?v=202609171438';
 
 const form = document.getElementById('fregister');
 const msg = document.getElementById('signup-msg');
