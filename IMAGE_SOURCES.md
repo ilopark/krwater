@@ -45,7 +45,8 @@
 - theme/home/img/business/pro01.jpg ← 자체 제작 이미지 (`~/Downloads/pro01.png` 2차 수정본, 1808x880 → JPEG q92)
 
 ## 그대로 둔 것
-- **회사 소유**: 로고(logo_b/logo_w), 시공사진(data/editor/*), main_section_1·2(현장 사진), ceo.png(서명), cert02.jpg(특허증), jo01.jpg(조직도)
+- **회사 소유**: 로고(logo_b/logo_w), main_section_1·2(현장 사진), ceo.png(서명), cert02.jpg(특허증), jo01.jpg(조직도)
+- 시공사진 4장(구 data/editor/*)은 2026-09-17 저장소에서 제거 → 원본은 `~/Downloads/krwater_시공사진_백업/` 및 git 이력(커밋 bc92a42 이전)에 보관. 이후 갤러리 사진은 Supabase Storage 에 업로드
 - **Pixabay (Pixabay Content License, 상업 이용·수정 가능, 출처 표기 불필요)**: skyscrapers-3184798, drop-of-water-578897, dam-929406, 2395117, skyscrapers-2612766, buildings-984195, bridge-336475
   - 라이선스: https://pixabay.com/service/license-summary/
 - **템플릿 UI 조각 (단순 도형)**: btn_prev/next/first/end.gif, pg_start/pg_end.png, close_btn, navi_arrow, scroll-top, search_black, select, require.png, chk.png, btn_cmt.png, gnb_bg2.gif — 창작성 없는 화살표·체크 표시. 새 사이트에서는 CSS/Lucide로 대체 예정

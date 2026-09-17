@@ -23,7 +23,7 @@ python3 -m http.server 8090 --directory /Users/ilo/dev/krwater
 | `/bbs/board.php?bo_table=news01` (뉴스) | ~~삭제~~ → `app/notices.html?category=news` |
 | `/bbs/login.php`, `register.php`, `password_lost.php` | ~~삭제~~ → `app/login.html`, `app/signup.html` |
 
-- CSS/JS/이미지/폰트: `theme/home/`, `js/`, `img/`, `data/editor/` 아래에 원본 경로 그대로
+- CSS/JS/이미지/폰트: `theme/home/`, `js/`, `img/` 아래에 원본 경로 그대로 (구 `data/editor/` 시공사진은 제거 → Supabase Storage 로 이관)
 - `?ver=210618` 같은 쿼리스트링은 파일명에서 `@ver=210618`로 치환됨
 
 ## 한계 (정적 복사본이므로)
@@ -56,7 +56,7 @@ python3 -m http.server 8090 --directory /Users/ilo/dev/krwater
 | 파일 | 역할 |
 |---|---|
 | `supabase/schema.sql` | 테이블(profiles·notices·gallery_posts·gallery_media·certificates)·RLS·트리거·Storage 버킷 (재실행 안전) |
-| `supabase/seed.sql` | 기존 시공사진 4건 + 인증서 1건을 DB 에 등록 (1회) |
+| `supabase/seed.sql` | 기존 시공사진 4건(제목·날짜) + 인증서 1건을 DB 에 등록 (1회). 사진 파일은 관리자 화면에서 다시 업로드 |
 | `app/config.js` | Supabase URL / publishable key |
 | `app/supabase.js`, `app/ui.js` | 클라이언트·인증 헬퍼, 유틸 |
 | `app/board-notice.js`, `board-gallery.js`, `board-cert.js` | 각 화면에 삽입되는 모듈 (기존 스킨 마크업으로 렌더링) |
