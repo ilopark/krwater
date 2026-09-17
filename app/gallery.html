@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>갤러리 | 대한수자원</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app-header" data-active="gallery"></div>
+
+<main class="wrap">
+  <!-- 목록 -->
+  <section id="view-list">
+    <div class="page-title">
+      <h1>시공 갤러리</h1>
+      <button id="btn-new" class="btn hidden">+ 새 게시물</button>
+    </div>
+    <div id="grid" class="grid"><div class="empty">불러오는 중…</div></div>
+    <div id="pager" class="pager"></div>
+  </section>
+
+  <!-- 상세 -->
+  <section id="view-detail" class="hidden">
+    <div class="card">
+      <div class="post-head">
+        <h2 id="d-title"></h2>
+        <div class="post-meta"><span id="d-author"></span><span id="d-date"></span></div>
+      </div>
+      <div id="d-desc" class="post-body" style="min-height:auto"></div>
+      <div id="d-media" class="media-list"></div>
+      <div class="post-foot">
+        <a href="./gallery.html" class="btn btn-ghost">목록</a>
+        <div class="btn-row hidden" id="d-admin">
+          <button id="btn-edit" class="btn btn-ghost">수정 / 파일 추가</button>
+          <button id="btn-delete" class="btn btn-danger">게시물 삭제</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 작성/수정 폼 (관리자) -->
+  <section id="view-form" class="hidden">
+    <div class="page-title"><h1 id="form-title">새 게시물</h1></div>
+    <form id="post-form" class="card" novalidate>
+      <div id="form-msg" class="alert alert-error hidden"></div>
+      <div class="field">
+        <label for="f-title">제목</label>
+        <input type="text" id="f-title" name="title" required maxlength="200" placeholder="예: 충북 음성 농업용수 개발 (2026.09)">
+      </div>
+      <div class="field">
+        <label for="f-desc">설명</label>
+        <textarea id="f-desc" name="description" style="min-height:120px" placeholder="현장 설명 (선택)"></textarea>
+      </div>
+      <div class="field">
+        <label for="f-files">사진 / 동영상 파일</label>
+        <input type="file" id="f-files" name="files" multiple accept="image/*,video/*">
+        <div class="hint">사진은 업로드 전에 자동으로 축소됩니다(긴 변 1600px). 동영상은 파일당 <span id="max-video"></span>MB 이하 — 큰 영상은 유튜브에 올리고 아래에 링크를 넣는 편이 좋습니다.</div>
+        <div id="file-list" class="upload-list"></div>
+      </div>
+      <div class="field">
+        <label for="f-embeds">유튜브 링크 (한 줄에 하나)</label>
+        <textarea id="f-embeds" name="embeds" style="min-height:70px" placeholder="https://youtu.be/XXXXXXXXXXX"></textarea>
+      </div>
+      <div id="progress-wrap" class="hidden">
+        <div class="muted" id="progress-text"></div>
+        <div class="progress"><i id="progress-bar"></i></div>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="btn-cancel" class="btn btn-ghost">취소</button>
+        <button type="submit" id="btn-save" class="btn">저장</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script type="module">
+  import { sb, humanError } from './supabase.js';
+  import { GALLERY_BUCKET, MAX_IMAGE_EDGE, IMAGE_QUALITY, MAX_VIDEO_MB, PAGE_SIZE } from './config.js';
+  import { renderHeader, esc, nl2br, fmtDate, fmtBytes, qs, toast, setBusy, youtubeId } from './ui.js';
+
+  const $ = (id) => document.getElementById(id);
+  const views = { list: $('view-list'), detail: $('view-detail'), form: $('view-form') };
+  const show = (name) => Object.entries(views).forEach(([k, el]) => el.classList.toggle('hidden', k !== name));
+  const storage = sb.storage.from(GALLERY_BUCKET);
+  const publicUrl = (path) => storage.getPublicUrl(path).data.publicUrl;
+
+  const page = Math.max(1, parseInt(qs('page') || '1', 10));
+  const id = qs('id');
+  const mode = qs('mode');
+
+  const profile = await renderHeader('gallery');
+  const isAdmin = profile?.role === 'admin';
+  let current = null;
+  $('max-video').textContent = MAX_VIDEO_MB;
+
+  // ---------- 목록 ----------
+  function coverHtml(media) {
+    const m = (media || []).slice().sort((a, b) => a.sort_order - b.sort_order)[0];
+    if (!m) return `<div class="thumb">이미지 없음</div>`;
+    if (m.media_type === 'image') return `<div class="thumb" style="background-image:url('${esc(m.url)}')"></div>`;
+    if (m.media_type === 'embed') {
+      const yid = youtubeId(m.url);
+      return `<div class="thumb" style="${yid ? `background-image:url('https://img.youtube.com/vi/${yid}/hqdefault.jpg')` : ''}"><span class="vid">▶ 동영상</span></div>`;
+    }
+    return `<div class="thumb"><video src="${esc(m.url)}#t=0.5" muted preload="metadata" style="width:100%;height:100%;object-fit:cover"></video><span class="vid">▶ 동영상</span></div>`;
+  }
+
+  async function loadList() {
+    $('btn-new').classList.toggle('hidden', !isAdmin);
+    const from = (page - 1) * PAGE_SIZE, to = from + PAGE_SIZE - 1;
+    const { data, count, error } = await sb.from('gallery_posts')
+      .select('id, title, created_at, gallery_media(media_type, url, sort_order)', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(from, to);
+    const grid = $('grid');
+    if (error) { grid.innerHTML = `<div class="empty">${esc(humanError(error))}</div>`; return; }
+    if (!data.length) { grid.innerHTML = `<div class="empty">등록된 게시물이 없습니다.</div>`; return; }
+    grid.innerHTML = data.map(p => `
+      <a class="gcard" href="./gallery.html?id=${p.id}">
+        ${coverHtml(p.gallery_media)}
+        <div class="info"><b>${esc(p.title)}</b><span>${fmtDate(p.created_at)} · 파일 ${p.gallery_media?.length || 0}개</span></div>
+      </a>`).join('');
+    const pages = Math.ceil(count / PAGE_SIZE);
+    let html = '';
+    if (pages > 1) for (let p = 1; p <= pages; p++) html += p === page ? `<span class="on">${p}</span>` : `<a href="./gallery.html?page=${p}">${p}</a>`;
+    $('pager').innerHTML = html;
+  }
+
+  // ---------- 상세 ----------
+  function mediaHtml(m) {
+    let inner;
+    if (m.media_type === 'image') inner = `<img src="${esc(m.url)}" alt="${esc(m.file_name || '')}" loading="lazy">`;
+    else if (m.media_type === 'video') inner = `<video src="${esc(m.url)}" controls preload="metadata"></video>`;
+    else {
+      const yid = youtubeId(m.url);
+      inner = yid
+        ? `<div class="embed"><iframe src="https://www.youtube.com/embed/${yid}" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>`
+        : `<a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m.url)}</a>`;
+    }
+    return `<div class="media-item" data-id="${m.id}">
+      ${inner}
+      ${m.file_name ? `<div class="fname">${esc(m.file_name)}${m.file_size ? ` · ${fmtBytes(m.file_size)}` : ''}</div>` : ''}
+      ${isAdmin ? `<button class="btn btn-sm btn-danger del" data-id="${m.id}" data-path="${esc(m.storage_path || '')}">삭제</button>` : ''}
+    </div>`;
+  }
+
+  async function loadDetail(postId) {
+    const { data, error } = await sb.from('gallery_posts')
+      .select('*, gallery_media(*)')
+      .eq('id', postId).maybeSingle();
+    if (error || !data) { toast(error ? humanError(error) : '게시물을 찾을 수 없습니다.', 'error'); location.replace('./gallery.html'); return; }
+    current = data;
+    current.gallery_media.sort((a, b) => a.sort_order - b.sort_order || a.id - b.id);
+    $('d-title').textContent = data.title;
+    $('d-author').textContent = data.author_name ? `작성자 ${data.author_name}` : '';
+    $('d-date').textContent = fmtDate(data.created_at, true);
+    $('d-desc').innerHTML = nl2br(data.description);
+    $('d-media').innerHTML = current.gallery_media.map(mediaHtml).join('') || '<div class="empty">첨부된 파일이 없습니다.</div>';
+    $('d-admin').classList.toggle('hidden', !isAdmin);
+    document.title = `${data.title} | 대한수자원`;
+    show('detail');
+  }
+
+  // 개별 미디어 삭제
+  $('d-media').addEventListener('click', async (e) => {
+    const btn = e.target.closest('button.del');
+    if (!btn || !confirm('이 파일을 삭제할까요?')) return;
+    setBusy(btn, true, '삭제 중…');
+    try {
+      if (btn.dataset.path) { const { error } = await storage.remove([btn.dataset.path]); if (error) throw error; }
+      const { error } = await sb.from('gallery_media').delete().eq('id', btn.dataset.id);
+      if (error) throw error;
+      btn.closest('.media-item').remove();
+      toast('삭제되었습니다.', 'success');
+    } catch (err) { toast(humanError(err), 'error'); setBusy(btn, false, ''); }
+  });
+
+  $('btn-edit').addEventListener('click', () => openForm(current));
+  $('btn-delete').addEventListener('click', async () => {
+    if (!current || !confirm(`"${current.title}" 게시물과 첨부 파일을 모두 삭제할까요?`)) return;
+    try {
+      const paths = current.gallery_media.map(m => m.storage_path).filter(Boolean);
+      if (paths.length) { const { error } = await storage.remove(paths); if (error) throw error; }
+      const { error } = await sb.from('gallery_posts').delete().eq('id', current.id);   // media 는 cascade 삭제
+      if (error) throw error;
+      toast('삭제되었습니다.', 'success');
+      location.href = './gallery.html';
+    } catch (err) { toast(humanError(err), 'error'); }
+  });
+
+  // ---------- 작성/수정 ----------
+  function openForm(post) {
+    if (!isAdmin) return toast('관리자만 작성할 수 있습니다.', 'error');
+    const f = $('post-form');
+    $('form-title').textContent = post ? '게시물 수정 / 파일 추가' : '새 게시물';
+    f.title.value = post?.title || '';
+    f.description.value = post?.description || '';
+    f.files.value = ''; f.embeds.value = '';
+    f.dataset.editId = post?.id || '';
+    $('file-list').textContent = '';
+    $('form-msg').classList.add('hidden');
+    $('progress-wrap').classList.add('hidden');
+    show('form');
+    f.title.focus();
+  }
+  $('btn-new').addEventListener('click', () => openForm(null));
+  $('btn-cancel').addEventListener('click', () => history.length > 1 ? history.back() : location.href = './gallery.html');
+
+  $('f-files').addEventListener('change', (e) => {
+    const files = [...e.target.files];
+    $('file-list').innerHTML = files.map(f => `• ${esc(f.name)} (${fmtBytes(f.size)})`).join('<br>');
+  });
+
+  // 이미지: 브라우저에서 리사이즈 → JPEG (용량·트래픽 절약). GIF/SVG 는 그대로
+  async function shrinkImage(file) {
+    if (!file.type.startsWith('image/') || /gif|svg/.test(file.type)) return file;
+    let bmp;
+    try { bmp = await createImageBitmap(file); } catch { return file; }
+    const scale = Math.min(1, MAX_IMAGE_EDGE / Math.max(bmp.width, bmp.height));
+    if (scale === 1 && file.type === 'image/jpeg' && file.size < 1024 * 1024) return file;
+    const c = document.createElement('canvas');
+    c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+    const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', IMAGE_QUALITY));
+    return new File([blob], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' });
+  }
+  const safeName = (name) => name.normalize('NFKD').replace(/[^\w.-]+/g, '_').replace(/^_+|_+$/g, '').slice(-80) || 'file';
+
+  $('post-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target, msg = $('form-msg'), btn = $('btn-save');
+    const title = f.title.value.trim();
+    const description = f.description.value;
+    const files = [...f.files.files];
+    const embeds = f.embeds.value.split('\n').map(s => s.trim()).filter(Boolean);
+    const showErr = (t) => { msg.textContent = t; msg.classList.remove('hidden'); };
+    if (!title) return showErr('제목을 입력하세요.');
+    const tooBig = files.find(x => x.type.startsWith('video/') && x.size > MAX_VIDEO_MB * 1024 * 1024);
+    if (tooBig) return showErr(`동영상 "${tooBig.name}" 이(가) ${MAX_VIDEO_MB}MB 를 넘습니다. 유튜브 링크로 올려주세요.`);
+    const badEmbed = embeds.find(u => !youtubeId(u));
+    if (badEmbed) return showErr(`유튜브 링크 형식이 아닙니다: ${badEmbed}`);
+
+    const total = files.length + embeds.length;
+    const prog = (n, text) => { $('progress-wrap').classList.remove('hidden'); $('progress-text').textContent = text; $('progress-bar').style.width = `${total ? Math.round(n / total * 100) : 100}%`; };
+    setBusy(btn, true, '저장 중…');
+    try {
+      // 1) 게시물 저장
+      let postId = f.dataset.editId;
+      if (postId) {
+        const { error } = await sb.from('gallery_posts').update({ title, description }).eq('id', postId);
+        if (error) throw error;
+      } else {
+        const { data, error } = await sb.from('gallery_posts')
+          .insert({ title, description, author_id: profile.id, author_name: profile.display_name }).select('id').single();
+        if (error) throw error;
+        postId = data.id;
+      }
+      // 2) 파일 업로드 + media 행 추가
+      const { data: existing } = await sb.from('gallery_media').select('sort_order').eq('post_id', postId).order('sort_order', { ascending: false }).limit(1);
+      let order = (existing?.[0]?.sort_order ?? -1) + 1;
+      let done = 0;
+      for (const raw of files) {
+        prog(done, `업로드 중 (${done + 1}/${total}) ${raw.name}`);
+        const file = await shrinkImage(raw);
+        const path = `${postId}/${Date.now()}_${safeName(file.name)}`;
+        const { error: upErr } = await storage.upload(path, file, { contentType: file.type, upsert: false });
+        if (upErr) throw upErr;
+        const { error } = await sb.from('gallery_media').insert({
+          post_id: postId, media_type: file.type.startsWith('video/') ? 'video' : 'image',
+          storage_path: path, url: publicUrl(path), file_name: raw.name, file_size: file.size, sort_order: order++,
+        });
+        if (error) throw error;
+        done++;
+      }
+      for (const url of embeds) {
+        const { error } = await sb.from('gallery_media').insert({ post_id: postId, media_type: 'embed', url, sort_order: order++ });
+        if (error) throw error;
+        done++;
+      }
+      prog(total, '완료');
+      toast('저장되었습니다.', 'success');
+      location.href = `./gallery.html?id=${postId}`;
+    } catch (err) {
+      showErr(humanError(err));
+      setBusy(btn, false, '');
+    }
+  });
+
+  // ---------- 라우팅 ----------
+  if (mode === 'new') { show('list'); openForm(null); }
+  else if (id) { await loadDetail(id); }
+  else { show('list'); await loadList(); }
+</script>
+</body>
+</html>

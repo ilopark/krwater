@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>게시판 | 대한수자원</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app-header" data-active=""></div>
+
+<main class="wrap">
+  <div class="page-title"><h1>게시판</h1></div>
+  <div class="grid">
+    <a class="gcard" href="./notices.html?category=notice"><div class="info" style="padding:22px"><b>공지사항</b><span>회사 공지</span></div></a>
+    <a class="gcard" href="./notices.html?category=news"><div class="info" style="padding:22px"><b>뉴스</b><span>소식·보도</span></div></a>
+    <a class="gcard" href="./gallery.html"><div class="info" style="padding:22px"><b>시공 갤러리</b><span>사진 · 동영상</span></div></a>
+  </div>
+  <p class="muted" style="margin-top:20px">관리자로 로그인하면 각 게시판에 작성 버튼이 표시됩니다.</p>
+</main>
+
+<script type="module">
+  import { renderHeader } from './ui.js';
+  await renderHeader('');
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>로그인 | 대한수자원</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app-header" data-active="login"></div>
+
+<main class="wrap wrap-narrow">
+  <div class="page-title"><h1>로그인</h1></div>
+  <form id="login-form" class="card" autocomplete="on" novalidate>
+    <div id="msg" class="alert alert-error hidden"></div>
+    <div class="field">
+      <label for="username">아이디</label>
+      <input type="text" id="username" name="username" autocomplete="username" required autofocus
+             pattern="[a-zA-Z0-9_]{3,20}" placeholder="영문·숫자·밑줄 3~20자">
+    </div>
+    <div class="field">
+      <label for="password">비밀번호</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required>
+    </div>
+    <button type="submit" id="btn-login" class="btn btn-block">로그인</button>
+    <p class="muted" style="text-align:center;margin:14px 0 0">
+      계정이 없으신가요? <a href="./signup.html">회원가입</a>
+    </p>
+  </form>
+</main>
+
+<script type="module">
+  import { signIn, humanError, getSession } from './supabase.js';
+  import { renderHeader, toast, setBusy, qs } from './ui.js';
+
+  await renderHeader('login');
+  // 이미 로그인돼 있으면 바로 이동
+  if (await getSession()) location.replace(qs('next') || './notices.html');
+
+  const form = document.getElementById('login-form');
+  const msg = document.getElementById('msg');
+  const btn = document.getElementById('btn-login');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.classList.add('hidden');
+    const username = form.username.value.trim();
+    const password = form.password.value;
+    if (!username || !password) { msg.textContent = '아이디와 비밀번호를 입력하세요.'; msg.classList.remove('hidden'); return; }
+    setBusy(btn, true, '로그인 중…');
+    try {
+      await signIn(username, password);
+      toast('로그인 되었습니다.', 'success');
+      location.href = qs('next') || './notices.html';
+    } catch (err) {
+      msg.textContent = humanError(err);
+      msg.classList.remove('hidden');
+    } finally {
+      setBusy(btn, false, '');
+    }
+  });
+</script>
+</body>
+</html>
