@@ -1,6 +1,6 @@
 // Supabase 클라이언트 + 인증/프로필 헬퍼
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-import { SUPABASE_URL, SUPABASE_ANON_KEY, AUTH_EMAIL_DOMAIN } from './config.js?v=202609171443';
+import { SUPABASE_URL, SUPABASE_ANON_KEY, AUTH_EMAIL_DOMAIN } from './config.js?v=202609171444';
 
 export const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 

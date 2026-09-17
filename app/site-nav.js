@@ -1,6 +1,6 @@
 // 사이트 헤더 "로그인" 메뉴: 로그인 상태면 "이름 · 로그아웃" 으로 표시
-import { getProfile, signOut } from './supabase.js?v=202609171443';
-import { toast } from './ui.js?v=202609171443';
+import { getProfile, signOut } from './supabase.js?v=202609171444';
+import { toast } from './ui.js?v=202609171444';
 
 const link = document.getElementById('site-auth-link');
 if (link) {

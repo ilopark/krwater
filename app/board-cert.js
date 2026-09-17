@@ -1,7 +1,7 @@
 // 인증서 — 기존 인증서 화면(그리드) 그대로. 이미지는 그대로 표시, PDF 는 미리보기 영역. 관리자만 등록/수정/삭제
-import { sb, getProfile, humanError } from './supabase.js?v=202609171443';
-import { IMAGE_QUALITY } from './config.js?v=202609171443';
-import { esc, toast, setBusy, resolveUrl, shrinkImage, safeName } from './ui.js?v=202609171443';
+import { sb, getProfile, humanError } from './supabase.js?v=202609171444';
+import { IMAGE_QUALITY } from './config.js?v=202609171444';
+import { esc, toast, setBusy, resolveUrl, shrinkImage, safeName } from './ui.js?v=202609171444';
 
 const BUCKET = 'certificates', MAX_MB = 20, MAX_EDGE = 2000;
 const $ = (id) => document.getElementById(id);
@@ -31,7 +31,7 @@ function itemHtml(c) {
 }
 
 async function load() {
-  const { data, error } = await sb.from('certificates').select('*').order('sort_order', { ascending: true }).order('created_at', { ascending: false });
+  const { data, error } = await sb.from('certificates').select('*').order('created_at', { ascending: false });   // 업로드 순: 최신이 앞, 오래된 것이 뒤
   if (error) { toast(humanError(error), 'error'); return; }
   items = data;
   ul.innerHTML = data.length ? data.map(itemHtml).join('') : staticHtml;
@@ -63,7 +63,6 @@ function openForm(cert) {
   $('cert-form-title').textContent = cert ? '인증서 수정' : '인증서 등록';
   f.title.value = cert?.title || '';
   f.description.value = cert?.description || '';
-  f.sort_order.value = cert?.sort_order ?? 0;
   f.file.value = '';
   f.dataset.editId = cert?.id || '';
   $('cert-file-info').textContent = cert ? `현재 파일: ${cert.file_name || cert.url} — 바꾸려면 새 파일을 선택하세요 (비우면 유지)` : 'PDF 또는 JPG/PNG, 20MB 이하. 이미지는 긴 변 2000px 로 자동 축소됩니다.';
@@ -78,7 +77,7 @@ $('cert-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const f = e.target, msg = $('cert-msg'), btn = f.querySelector('.btn_submit');
   const showErr = (t) => { msg.textContent = t; msg.style.display = ''; };
-  const title = f.title.value.trim(), description = f.description.value, sort_order = parseInt(f.sort_order.value || '0', 10) || 0;
+  const title = f.title.value.trim(), description = f.description.value;
   const raw = f.file.files[0] || null, editId = f.dataset.editId;
   if (!title) return showErr('제목을 입력하세요.');
   if (!editId && !raw) return showErr('PDF 또는 이미지 파일을 선택하세요.');
@@ -86,7 +85,7 @@ $('cert-form').addEventListener('submit', async (e) => {
   if (raw && raw.size > MAX_MB * 1024 * 1024) return showErr(`파일이 ${MAX_MB}MB 를 넘습니다.`);
   setBusy(btn, true, '저장 중…');
   try {
-    const payload = { title, description, sort_order };
+    const payload = { title, description };
     const prev = editId ? items.find((x) => String(x.id) === editId) : null;
     if (raw) {
       const file = raw.type === 'application/pdf' ? raw : await shrinkImage(raw, MAX_EDGE, IMAGE_QUALITY);

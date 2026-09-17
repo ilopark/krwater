@@ -299,13 +299,15 @@ create table if not exists public.certificates (
   url           text not null,          -- 공개 URL
   file_name     text,
   file_size     bigint,
-  sort_order    integer not null default 0,
   author_id     uuid references public.profiles (id) on delete set null,
   author_name   text,
   created_at    timestamptz not null default now(),
   updated_at    timestamptz not null default now()
 );
-create index if not exists certificates_order_idx on public.certificates (sort_order, created_at desc);
+-- 정렬은 업로드 순(최신이 앞, 오래된 것이 뒤). 예전 sort_order 컬럼은 제거
+drop index if exists certificates_order_idx;
+alter table public.certificates drop column if exists sort_order;
+create index if not exists certificates_created_idx on public.certificates (created_at desc);
 alter table public.certificates alter column storage_path drop not null;
 
 drop trigger if exists certificates_set_updated_at on public.certificates;
