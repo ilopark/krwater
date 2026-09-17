@@ -1,0 +1,139 @@
+/* greeting */
+.sub-inner {
+    padding: 0 10px;
+  }
+  
+  .grt-txt {
+    float: left;
+    width: 50%;
+  }
+  
+  .grt-img {
+    float: left;
+    width: 50%;
+  }
+  
+  .grt-img img {
+    width: 100%;
+  }
+  
+  .grt-content {
+    position: relative;
+  }
+  
+  .slogan-tit {
+    font-size: 50px;
+    color: #323232;
+    text-align: center;
+    font-weight: 500;
+    padding: 75px 0;
+    line-height: 54px;
+  }
+  
+  .greeting-tit {
+    font-weight: 400;
+    font-size: 32px;
+    color: #323232;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-top: 43px;
+  }
+  
+  .greeting-tit:after {
+    content: "";
+    width: 38px;
+    height: 1px;
+    background: #dcdcdc;
+    position: absolute;
+    left: 0;
+    top: 100%;
+  }
+  
+  .greeting-desc {
+    font-size: 16px;
+    color: #646464;
+    line-height: 22px;
+    letter-spacing: -0.2px;
+    padding-right: 16px;
+  }
+  
+  .sign_txt {
+    font-size: 19px;
+    color: #323232;
+    padding-top: 35px;
+    font-weight: 300;
+  }
+  
+  .sign_txt span {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .green-point {
+    color: #0b58b7;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .slogan-tit {
+      font-size: 40px;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .grt-txt {
+      float: none;
+      width: 100%;
+    }
+    .sub-inner {
+      padding: 0;
+    }
+    .grt-img {
+      width: 275px;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .slogan-tit {
+      padding: 20px 0;
+      line-height: 42px;
+      font-size: 35px;
+      text-align: center;
+      background-position: center;
+    }
+    .grt-img {
+      top: 145px;
+      right: 0;
+      width: 100%;
+      text-align: center;
+    }
+    .grt-img img {
+      width: 310px;
+      margin: 0 auto;
+      max-height: 500px;
+    }
+    .greeting-tit:after {
+      left: 50%;
+      margin-left: -20px;
+    }
+    .greeting-tit {
+      font-size: 18px;
+      padding-top: 522px;
+      text-align: center;
+    }
+    .greeting-desc {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0 40px 16px;
+    }
+    .sign_txt {
+      font-size: 16px;
+      padding: 0 40px;
+    }
+    .sign_txt span {
+      font-size: 20px;
+    }
+  }
+  
+  
+  

@@ -1,0 +1,463 @@
+@charset "UTF-8";
+/*common.css*/
+html,
+body {
+  -webkit-overflow-x: hidden;
+  -ms-overflow-x: hidden;
+  overflow-x: hidden;
+}
+
+/* 공통 Class */
+.fa-spin {
+  -webkit-animation: none;
+          animation: none;
+}
+
+.inner {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+
+.clearfix:before,
+.clearfix:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+
+
+.ell {
+  -webkit-overflow: hidden;
+  -ms-overflow: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  height: 72px;
+}
+
+
+/*********** 서브 페이지 *************/
+#container_title {
+  display: none;
+}
+
+.sub_sec {
+  padding: 100px 0 130px;
+}
+
+/* 서브페이지 배너 */
+.sub_banner {
+  display: table;
+  width: 100%;
+  height: 470px;
+  -webkit-overflow: hidden;
+  -ms-overflow: hidden;
+  overflow: hidden;
+  background: url(../../img/company/skyscrapers-2612766_1920.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.sub_banner.business {
+  background-image: url(../../img/business/bridge-336475_1920_1.jpg);
+}
+
+.sub_banner.board_banner{
+  background-image: url(../../img/board/sub-banner.jpg);
+}
+
+.sub_banner.map {
+  background-image: url(../../img/company/map-banner.jpg);
+}
+
+.sub_banner.sub_content {
+  background-image: url(../../img/sub/sub-banner.jpg);
+}
+.sub_banner .text_area {
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.sub_banner h2 {
+  font-size: 40px;
+  color: rgba(255,255,255,0.8);
+  line-height: 50px;
+  text-align: center;
+  width: 100%;
+
+}
+
+.text_area .sub-banner-text{
+  font-size: 24px;
+  color: rgba(255,255,255,0.8);
+  line-height: 30px;
+  text-align: center;
+  width: 60%;
+}
+
+
+
+/* 서브페이지 타이틀 */
+.tit_area.subpage * {
+  text-align: left;
+}
+
+.tit_area.subpage .parallelogram {
+  display: block;
+  margin: 0 0 25px 10px;
+  width: 15px;
+  height: 25px;
+  -webkit-transform: skew(-30deg);
+  transform: skew(-30deg);
+  background: #00387D;
+}
+
+.tit_area.subpage .main_tit {
+  color: #222;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.tit_area.subpage .sub_tit {
+  display: block;
+  margin-bottom: 4px;
+  color: #787878;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: -0.4px;
+}
+
+.tit_area.subpage .desc {
+  margin: 36px auto 0;
+  padding: 0;
+  letter-spacing: -0.4px;
+  width: 100%;
+  font-weight: 400;
+  color: #535353;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* 서브 네비게이션 */
+.mysubmenu {
+  position: relative;
+  margin: -35px auto 0;
+  width: 1200px;
+  padding: 0 20px;
+  z-index: 21;
+}
+
+.mysubmenu .inner {
+  padding: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  background: #fff;
+  /*     border-radius: 6px;
+    overflow: hidden; */
+}
+
+.mysubmenu .menu_select {
+  float: left;
+
+  position: relative;
+  width: 300px;
+  border-right: 1px solid #ddd;
+}
+
+.mysubmenu .menu_select.home {
+  padding: 0;
+  width: 70px;
+  height: 70px;
+  background-color: #fff;
+  background-position: center;
+}
+
+.mysubmenu .menu_select.home a {
+  text-align: center;
+  line-height: 70px;
+  font-size: 24px;
+  padding: 0;
+}
+
+.mysubmenu .menu_select.home a i {
+  color: #353535;
+}
+
+.mysubmenu .menu_select li  {
+  position: relative;
+}
+.mysubmenu .menu_select li.on a::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height:100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #00387D;
+}
+
+.mysubmenu .menu_select li.on a {
+ 
+}
+
+.mysubmenu .menu_select li a {
+  padding:0 24px;
+}
+
+.mysubmenu .current_menu {
+  background-repeat: no-repeat;
+  background-image: url(../../img/common/navi_arrow.png) ;
+  background-position: 92% center;
+  background-size: 20px;
+}
+
+.mysubmenu .all_menu {
+  position: absolute;
+  top: 71px;
+  left: 0;
+  border: 1px solid #ddd;
+  border-top: none;
+  display: none;
+  width:100%;
+  z-index: 20;
+  background: #fff;
+}
+
+.mysubmenu li,
+.mysubmenu li a,
+.mysubmenu h3 {
+  line-height: 70px;
+  letter-spacing: 0.6px;
+  color: #353535;
+  font-weight: 400;
+}
+
+.mysubmenu .all_menu ul+ul li {
+  border-top: 1px solid #ddd;
+}
+
+.mysubmenu .all_menu li:hover {
+  background: #00387D;
+}
+
+.mysubmenu .all_menu li:hover a {
+  color: #fff;
+}
+
+.mysubmenu .all_menu.all_submenu li{
+  border-top: 1px solid #ddd;
+}
+
+.mysubmenu .all_menu.all_submenu li:first-child{
+  border-top: 0;
+}
+
+@media screen and (max-width: 1199px) {
+  /* 공통 Class */
+  .ell {
+    -webkit-line-clamp: 3;
+    height: 66px;
+  }
+  .inner {
+    width: 100%;
+    max-width: 1170px;
+  }
+  
+  /* 서브 페이지 */
+  .sub_sec {
+    padding: 80px 0 90px;
+  }
+  .tit_area.subpage .parallelogram {
+    margin: 0 0 22px 8px;
+    width: 12px;
+    height: 20px;
+  }
+  .tit_area.subpage .sub_tit {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .tit_area.subpage .desc {
+    margin: 32px auto 0;
+    font-size: 15px;
+  }
+  /* 서브 배너 */
+  .sub_banner h2 {
+    font-size: 32px;
+  }
+
+  .text_area .sub-banner-text{
+    font-size: 16px;
+
+    line-height: 20px;
+    width: 80%;
+  }
+
+
+  .sub_banner span {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  /* 서브 네비게이션 */
+  .mysubmenu {
+    margin: -30px auto 0;
+    width: 100%;
+  }
+  .mysubmenu .menu_select {
+    width: 230px;
+
+  }
+  .mysubmenu .menu_select.home {
+    width: 60px;
+    height: 60px;
+    background-size: 18px auto;
+  }
+  .mysubmenu .menu_select.home a {
+    line-height: 60px;
+  }
+  .mysubmenu .menu_select li a {
+    padding: 0 15px;
+  }
+  .mysubmenu .all_menu {
+    top: 61px;
+  }
+  .mysubmenu li,
+  .mysubmenu li a,
+  .mysubmenu h3 {
+    font-size: 14px;
+    line-height: 60px;
+  }
+  .mysubmenu .current_menu {
+    background-size: 15px auto;
+  }
+  
+}
+
+
+
+@media screen and (max-width: 767px) {
+
+
+  /* 서브 페이지 */
+  .sub_banner { 
+    height: 360px;
+  }
+  .sub_sec {
+    padding: 60px 0 70px;
+  }
+
+  /* 서브 네비게이션*/
+  .mysubmenu {
+    margin: -25px auto 0;
+  }
+
+  .mysubmenu .inner {
+    display: flex;
+  }
+  .mysubmenu .main_menulist_area {
+    display: none;
+  }
+  .mysubmenu .inner {
+    position: relative;
+  }
+  .mysubmenu .menu_select.home {
+    z-index: 30;
+    width: 50px;
+    height: 50px;
+    border-right: 1px solid #ddd;
+    background-size: 15px auto;
+    flex: 0 0 50px;
+  }
+  .mysubmenu .menu_select.home a {
+    line-height: 50px;
+  }
+  .mysubmenu .menu_select {
+    
+    flex-grow: 1;
+    border-right: none;
+  }
+  .mysubmenu .menu_select li a{
+    padding: 0 15px;
+  }
+  .mysubmenu .all_menu {
+    top: 51px;
+    background: none;
+    border: none;
+  }
+  .mysubmenu li,
+  .mysubmenu li a,
+  .mysubmenu h3 {
+    line-height: 50px;
+  }
+  .mysubmenu .all_menu > div {
+    padding-right: 1px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+  }
+  .mysubmenu .current_menu {
+    background-size: 13px auto;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+  /* 공통 Class */
+  .ell {
+    -webkit-line-clamp: 2;
+    height: 42px;
+  }
+
+  /* 서브페이지 */
+  .sub_sec {
+    padding: 50px 0;
+  }
+  .tit_area.subpage .parallelogram {
+    margin: 0 0 15px 5px;
+    width: 8px;
+    height: 15px;
+  }
+  .tit_area.subpage .sub_tit {
+    font-size: 14px;
+    line-height: 18px;
+    word-break: keep-all;
+  }
+  .tit_area.subpage .desc {
+    margin: 30px auto 0;
+  }
+  /* 서브페이지 배너 */
+  .sub_banner {
+    height: 300px;
+  }
+  .sub_banner h2 {
+    font-size: 24px;
+  }
+  .sub_banner span {
+    font-size: 13px;
+    line-height: 20px;
+  }
+  /* 서브 네비게이션 */
+  .mysubmenu li,
+  .mysubmenu li a,
+  .mysubmenu h3 {
+    font-size: 13px;
+  }
+ 
+}
+
+
+/*# sourceMappingURL=widget.css.map */

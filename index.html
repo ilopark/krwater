@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta property="og:type" content="website">
+<meta property="og:title" content="(주)대한수자원">
+<meta property="og:description" content="㈜대한수자원의 특허받은 기술력, 대용량 심층 지하수를 공당 5,000t/일 이상 개발">
+<meta property="og:url" content="https://krwater.co.kr/">
+<meta property="og:image" content="https://krwater.co.kr/img/logo_big.jpg">
+
+<title>대한수자원</title>
+<link rel="stylesheet" href="theme/home/css/default.css@ver=210618.css">
+<link rel="stylesheet" href="js/font-awesome/css/font-awesome.min.css@ver=210618.css">
+<link rel="stylesheet" href="theme/home/skin/latest/pic_basic/style.css@ver=210618.css">
+<link rel="stylesheet" href="theme/home/skin/outlogin/basic/style.css@ver=210618.css">
+<!--[if lte IE 8]>
+<script src="https://krwater.co.kr/js/html5.js"></script>
+<![endif]-->
+
+<link rel="shortcut icon" href="https://krwater.co.kr/파일이름.ico">
+<link rel="icon" href="https://krwater.co.kr/파일이름.ico">
+<link rel="shortcut icon" href="https://krwater.co.kr/favicon.ico" type="image/x-icon">
+
+<link rel="stylesheet" href="theme/home/css/common/reset.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+<link rel="stylesheet" href="theme/home/css/main.css">
+<link rel="stylesheet" href="theme/home/css/common/head.css">
+<link rel="stylesheet" href="theme/home/css/common/footer.css">
+<link rel="stylesheet" href="theme/home/css/common/font.css">
+<link rel="stylesheet" href="theme/home/css/common/common.css">
+<link rel="stylesheet" href="theme/home/css/common/board.css">
+<link rel="stylesheet" href="theme/home/css/common/user.css">
+<link rel="stylesheet" href="theme/home/css/sub/company.css">
+<link rel="stylesheet" href="theme/home/css/sub/greeting.css">
+<link rel="stylesheet" href="theme/home/css/sub/business.css">
+<link rel="stylesheet" href="theme/home/css/sub/map.css">
+
+<!-- <link rel="stylesheet" href="https://krwater.co.kr/theme/home/css/board/list.css">
+<link rel="stylesheet" href="https://krwater.co.kr/theme/home/css/board/gallery.css">
+<link rel="stylesheet" href="https://krwater.co.kr/theme/home/css/board/webzine.css"> -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+
+<script>
+// 자바스크립트에서 사용하는 전역변수 선언
+var g5_url       = "https://krwater.co.kr";
+var g5_bbs_url   = "https://krwater.co.kr/bbs";
+var g5_is_member = "";
+var g5_is_admin  = "";
+var g5_is_mobile = "";
+var g5_bo_table  = "";
+var g5_sca       = "";
+var g5_editor    = "";
+var g5_cookie_domain = "";
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+
+
+<link rel="stylesheet" href="https://krwater.co.kr/theme/home/css/index.css">
+
+<script src="js/jquery-1.12.4.min.js@ver=210618"></script>
+<script src="js/jquery-migrate-1.4.1.min.js@ver=210618"></script>
+<script src="js/jquery.menu.js@ver=210618"></script>
+<script src="js/common.js@ver=210618"></script>
+<script src="js/wrest.js@ver=210618"></script>
+<script src="js/placeholders.min.js@ver=210618"></script>
+</head>
+<body>
+
+<script>
+    $(function() {
+        setInterval(function() {
+            if ($(window).scrollTop() >= 80) {
+                $("#hd").addClass("scroll_bg");
+                $("#mb-open-menu").addClass("scroll_bg");
+            } else {
+                $("#hd").removeClass("scroll_bg");
+                $("#mb-open-menu").removeClass("scroll_bg");
+            }
+        }, 400);
+        
+    });
+</script>
+
+<!-- 상단 시작 { -->
+<div id="hd">
+    
+    <h1 id="hd_h1">대한수자원</h1>
+
+    <div id="skip_to_container"><a href="index.html#container">본문 바로가기</a></div>
+
+    
+<!-- 팝업레이어 시작 { -->
+<div id="hd_pop">
+    <h2>팝업레이어 알림</h2>
+
+<span class="sound_only">팝업레이어 알림이 없습니다.</span></div>
+
+<script>
+$(function() {
+    $(".hd_pops_reject").click(function() {
+        var id = $(this).attr('class').split(' ');
+        var ck_name = id[1];
+        var exp_time = parseInt(id[2]);
+        $("#"+id[1]).css("display", "none");
+        set_cookie(ck_name, 1, exp_time, g5_cookie_domain);
+    });
+    $('.hd_pops_close').click(function() {
+        var idb = $(this).attr('class').split(' ');
+        $('#'+idb[1]).css('display','none');
+    });
+    $("#hd").css("z-index", 1000);
+});
+</script>
+<!-- } 팝업레이어 끝 -->
+    <div id="hd_wrapper">
+       <div class="inner">
+        <div id="logo">
+            <a href="index.html">
+                <!-- <img src="https://krwater.co.kr/img/logo.png" alt="대한수자원">-->
+            </a>
+        </div>
+
+        <div id="mb-open-menu">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+        </div>
+        <nav id="gnb">
+            <h2>메인메뉴</h2>
+            <div class="gnb_wrap">
+                <ul id="gnb_1dul">
+                    <li class="gnb_1dli gnb_mnal"><button type="button" class="gnb_menu_btn"><i class="fa fa-bars" aria-hidden="true"></i><span class="sound_only">전체메뉴열기</span></button></li>
+                                        <li class="gnb_1dli " style="z-index:999">
+                        <a href="theme/home/sub/introduce.php.html" target="_self" class="gnb_1da">회사소개</a>
+                        <span class="bg">하위분류</span><ul class="gnb_2dul">
+                    <li class="gnb_2dli"><a href="theme/home/sub/introduce.php.html" target="_self" class="gnb_2da">인사말</a></li>
+                                        <li class="gnb_2dli"><a href="theme/home/sub/certificate.php.html" target="_self" class="gnb_2da">인증서</a></li>
+                                        <li class="gnb_2dli"><a href="theme/home/sub/organization.php.html" target="_self" class="gnb_2da">조직도</a></li>
+                                        <li class="gnb_2dli"><a href="theme/home/sub/map.php.html" target="_self" class="gnb_2da">오시는길</a></li>
+                    </ul>
+                    </li>
+                                        <li class="gnb_1dli " style="z-index:998">
+                        <a href="theme/home/sub/pro07.php.html" target="_self" class="gnb_1da">사업소개</a>
+                        <span class="bg">하위분류</span><ul class="gnb_2dul">
+                    <li class="gnb_2dli"><a href="theme/home/sub/pro07.php.html" target="_self" class="gnb_2da">심층지하수 개발</a></li>
+                    </ul>
+                    </li>
+                                        <li class="gnb_1dli " style="z-index:997">
+                        <a href="bbs/board.php@bo_table=gallery.html" target="_self" class="gnb_1da">시공사진</a>
+                        <span class="bg">하위분류</span><ul class="gnb_2dul">
+                    <li class="gnb_2dli"><a href="bbs/board.php@bo_table=gallery.html" target="_self" class="gnb_2da">갤러리</a></li>
+                    </ul>
+                    </li>
+                                        <li class="gnb_1dli " style="z-index:996">
+                        <a href="bbs/board.php@bo_table=notice.html" target="_self" class="gnb_1da">고객센터</a>
+                        <span class="bg">하위분류</span><ul class="gnb_2dul">
+                    <li class="gnb_2dli"><a href="bbs/board.php@bo_table=notice.html" target="_self" class="gnb_2da">공지사항</a></li>
+                                        <li class="gnb_2dli"><a href="bbs/board.php@bo_table=news01.html" target="_self" class="gnb_2da">뉴스</a></li>
+                    </ul>
+                    </li>
+                                    </ul>
+                <div id="gnb_all">
+                    <h2>전체메뉴</h2>
+                    <ul class="gnb_al_ul">
+                                                <li class="gnb_al_li">
+                            <a href="theme/home/sub/introduce.php.html" target="_self" class="gnb_al_a">회사소개</a>
+                            <ul>
+                        <li><a href="theme/home/sub/introduce.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 인사말</a></li>
+                                                <li><a href="theme/home/sub/certificate.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 인증서</a></li>
+                                                <li><a href="theme/home/sub/organization.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 조직도</a></li>
+                                                <li><a href="theme/home/sub/map.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 오시는길</a></li>
+                        </ul>
+                        </li>
+                                                <li class="gnb_al_li">
+                            <a href="theme/home/sub/pro07.php.html" target="_self" class="gnb_al_a">사업소개</a>
+                            <ul>
+                        <li><a href="theme/home/sub/pro07.php.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 심층지하수 개발</a></li>
+                        </ul>
+                        </li>
+                                                <li class="gnb_al_li">
+                            <a href="bbs/board.php@bo_table=gallery.html" target="_self" class="gnb_al_a">시공사진</a>
+                            <ul>
+                        <li><a href="bbs/board.php@bo_table=gallery.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 갤러리</a></li>
+                        </ul>
+                        </li>
+                                                <li class="gnb_al_li">
+                            <a href="bbs/board.php@bo_table=notice.html" target="_self" class="gnb_al_a">고객센터</a>
+                            <ul>
+                        <li><a href="bbs/board.php@bo_table=notice.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 공지사항</a></li>
+                                                <li><a href="bbs/board.php@bo_table=news01.html" target="_self"><i class="fa fa-caret-right" aria-hidden="true"></i> 뉴스</a></li>
+                        </ul>
+                        </li>
+                                            </ul>
+                    <button type="button" class="gnb_close_btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </nav>
+            </div>
+    </div>
+    </div>
+    <script>
+        $(function() {
+            $(".gnb_menu_btn").click(function() {
+                $("#gnb_all").show();
+            });
+            $(".gnb_close_btn").click(function() {
+                $("#gnb_all").hide();
+            });
+        });
+
+
+
+/* 퀵메뉴 */
+$(function(){
+
+    $('.scroll-top').on('click',function(){
+        $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+        return false;
+    });
+
+    
+var lastScrollTop = 0;
+var scroll_btn = $('.scroll-top');
+
+btnScroll();
+$(window).on('scroll', function(e) {
+    btnScroll();
+
+});
+
+function btnScroll() {
+    st = $(this).scrollTop();
+
+   lastScrollTop = st;
+
+    if (st === 0) {
+        scroll_btn.fadeOut();
+      
+    }else{
+        $(scroll_btn).fadeIn();
+    }
+}
+
+
+
+/* 화면 최소높이  */
+    function page_h() {
+        var wheight = $(window).height();
+        var header =$('#hd').outerHeight();
+        var footer =$('#ft').outerHeight();
+        var wrap_h = wheight - footer;
+        
+        $('#container').css('min-height',wrap_h);
+
+    
+        
+    } page_h();
+
+    $(window).on('resize', function(){
+        page_h();
+    });
+
+
+});
+
+
+
+
+    </script>
+</div>
+<!-- } 상단 끝 -->
+
+
+<div class="scroll-top">
+    <div class="scroll-top-icon"></div>
+</div>
+
+<!-- 콘텐츠 시작 { -->
+<div id="wrapper">
+    <div id="container_wr">
+        <div id="container">
+            <div class="main_page">
+    <div class="visual_banner">
+        <div class="swiper-container mb_container">
+            <div class="swiper-wrapper mb_wrapper">
+                <div class="swiper-slide mb_slide slide-img1">
+                    <div class="bn_tit inner">
+                        <h2 ><strong>(주)대한수자원</strong></h2>
+                        <p class="desc">전문 대용량 심층 지하수 개발, 특허받은 기술력과 책임있는 시공</p>
+                    </div>
+                </div>
+                <div class="swiper-slide mb_slide slide-img2">
+                    <div class="bn_tit inner">
+                        <h2 ><strong>(주)대한수자원</strong>
+                        </h2>
+                        <p class="desc">생활용수, 농업용수, 공업용수, 해수 개발 등 지하수 관련 시공</p>
+                    </div>
+                </div>
+                <!--<div class="swiper-slide mb_slide slide-img3">
+                    <div class="bn_tit inner">
+                       <h2 ><strong>(주)대한수자원</strong>
+                        <p class="desc">생활용수, 농업용수, 공업용수, 해수 개발 등 지하수 관련 시공</p>
+                    </div>
+                </div>-->
+       
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next visual_banner_next"></div>
+            <div class="swiper-button-prev visual_banner_prev"></div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination visual_banner-pagination"></div>
+        </div>
+    </div>
+    <script>
+        var swiper = new Swiper('.visual_banner .swiper-container', {
+            speed: 1000,
+            loop: true,
+            navigation: {
+                nextEl: '.swiper-button-next.visual_banner_next',
+                prevEl: '.swiper-button-prev.visual_banner_prev',
+            },
+            pagination: {
+                el: '.swiper-pagination.visual_banner-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 5000,
+            },
+        });
+
+
+    </script>
+    <div class="main_section main_sec0">
+        <div class="inner clearfix">
+            <div class="sec0_box_list">
+                    <ul class="clearfix">
+                        <li class="sec0_box_box sec0_box_box1">
+                            <div class="sec0_box_icon">
+
+                            </div>
+                            <div class="sec0_box_article">
+                                <p class="sec0_box_name">지하수 사전조사</p>
+                                <p class="sec0_box_desc">지하수 탐사를 위한 사전조사 및 수맥조사</p>
+                            </div>
+                        </li>
+                        <li class="sec0_box_box sec0_box_box3">
+                            <div class="sec0_box_icon">
+                            </div>
+                            <div class="sec0_box_article">
+                                <p class="sec0_box_name">지하수 개발공사</p>
+                                <p class="sec0_box_desc">허가, 신고, 개발까지 한번에!</p>
+                            </div>
+                        </li>
+                        <li class="sec0_box_box sec0_box_box2">
+                            <div class="sec0_box_icon">
+                            </div>
+                            <div class="sec0_box_article">
+                                <p class="sec0_box_name">지하수 사후관리</p>
+                                <p class="sec0_box_desc">청결하게 관리하여 깨끗한 지하수를 이용</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+
+    <div class="main_section main_sec1">
+        <div class="inner clearfix">
+            <div class="tit_area main">
+                <h2 class="main_tit">심층지하수 개발</h2>
+                <p class="desc">
+                대용량 심층 지하수맥을 찾아 심도 200M까지의 지하 수맥층을 보호하여 <Br>주변 지하수가 고갈되지 않도록 합니다.<br><br>
+㈜대한수자원의 특허받은 자사만의 기술력으로 대용량 심층 지하수를<Br>
+공당 5,000t/일 이상 개발하고 있습니다
+                </p>
+            </div>
+            <div class="list_area">
+                <ul class="clearfix">
+                    <li>
+                        <div class="sec1_info_box">
+                            <div class="info_img">
+                                <img src="theme/home/img/main/main_section_1.jpg" alt="">
+                            </div>
+
+                            <div class="text_box">
+                                <div class="text">
+                                    <h3 class="main_tit">기초조사/수맥탐사 </h3>
+                                    <p class="desc">
+                                    탐사전 유럭지 및 취약지역 등 사전 수맥 조사, 전기검층, 지표지질조사, 선구조분석, 물리탐사, 시추조사
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sec1_info_box">
+                            <div class="info_img">
+                                <img src="theme/home/img/main/main_section_2.jpg" alt="">
+                            </div>
+                            <div class="text_box">
+                                <div class="text">
+                                    <h3 class="main_tit">착정</h3>
+                                    <p class="desc">
+                                    조사공 착정, 에어써징 등 제반작업, 취수 가능량 양수 시험, 취수 기준 확인, 용수 공급
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sec1_info_box">
+                            <div class="info_img">
+                                <img src="theme/home/img/main/main_section_3.jpg" alt="">
+                            </div>
+                            <div class="text_box">
+                                <div class="text">
+                                    <h3 class="main_tit">결과보고</h3>
+                                    <p class="desc">
+                                    지하 수자원 수맥탐사, 개발 결과 보고, 취수시설 및 부대시설 건축 진행(안) 보고<br><br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sec1_info_box">
+                            <div class="info_img">
+                                <img src="theme/home/img/main/main_section_4.jpg" alt="">
+                            </div>
+                            <div class="text_box">
+                                <div class="text">
+                                    <h3 class="main_tit">이용등록 및 허가진행</h3>
+                                    <p class="desc">
+                                    국토부 허가 신청 및 완료<br><Br><br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="main_section main_sec2" >
+        <div class="main_sec2-bg" >
+            <div class="inner">
+                <div class="tit_area main">
+                    <h2 class="main_tit">With K-Water</h2>
+                    <p class="desc">
+                   (주)대한수자원은 대용량 심층 지하수 개발을 한국수자원공사(K-Water)와 함께 추진하고 있습니다.
+                    </p>
+                </div>
+                <div class="view_more">
+                    <a href="https://www.kwater.or.kr/" target="_blank">Homepage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    
+    <div class="main_section main_sec3">
+        <div class="inner">
+            <div class="latest_area">
+
+                <div class="latest_wr">
+                    <div class="tit_area main">
+                        <h2 class="main_tit">시공사진</h2>
+                        <p class="desc">
+                        Photo Gallery
+                        </p>
+                    </div>
+                    
+<div class="pic_lt" >
+    <h2 class="lat_title"><a href="bbs/board.php@bo_table=gallery.html">시공사진</a></h2>
+    <ul>
+            <li>
+            <a href="bbs/board.php@bo_table=gallery&amp;wr_id=4.html" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442_500x500.jpg" alt="" ></a>
+            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="bbs/board.php@bo_table=gallery&amp;wr_id=4.html" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>04</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487651_5442.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
+            <span class="lt_date" style="padding:10px"><i class="fa fa-clock-o" aria-hidden="true"></i>10-28</span>
+        </li>
+            <li>
+            <a href="bbs/board.php@bo_table=gallery&amp;wr_id=3.html" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686_500x500.jpg" alt="" ></a>
+            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="bbs/board.php@bo_table=gallery&amp;wr_id=3.html" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>03</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487668_7686.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
+            <span class="lt_date" style="padding:10px"><i class="fa fa-clock-o" aria-hidden="true"></i>10-28</span>
+        </li>
+            <li>
+            <a href="bbs/board.php@bo_table=gallery&amp;wr_id=2.html" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068_500x500.jpg" alt="" ></a>
+            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="bbs/board.php@bo_table=gallery&amp;wr_id=2.html" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>02</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487622_1068.jpg"><br style="clear:both;">&nbsp;</p></p></div></div></a>
+            <span class="lt_date" style="padding:10px"><i class="fa fa-clock-o" aria-hidden="true"></i>10-28</span>
+        </li>
+            <li>
+            <a href="bbs/board.php@bo_table=gallery&amp;wr_id=1.html" class="lt_img" style="padding:10px"><img src="data/editor/2110/thumb-71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769_500x500.jpg" alt="" ></a>
+            <span class="hot_icon">H<span class="sound_only">인기글</span></span><a class="gall_text_area" href="bbs/board.php@bo_table=gallery&amp;wr_id=1.html" ><div class="text_area_box"><div class="gall_title"><strong style='padding:10px'>01</strong></div><div class="gall_content"><span class="sound_only">본문내용</span><p><p><img src="data/editor/2110/71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769.jpg" title="71832e6287ae02a73405f0b7ebdf72b9_1635487573_5769.jpg"><br style="clear:both;">&nbsp;</p><p>수맥탐사&nbsp;</p><p><br></p><p><br></p></p></div></div></a>
+            <span class="lt_date" style="padding:10px"><i class="fa fa-clock-o" aria-hidden="true"></i>10-28</span>
+        </li>
+            </ul>
+    <a href="bbs/board.php@bo_table=gallery.html" class="lt_more"><span class="sound_only">시공사진</span><i class="fa fa-plus" aria-hidden="true"></i><span class="sound_only"> 더보기</span></a>
+
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="main_section main_sec4">
+    <div class="inner">
+        <div class="main_sec4-content">
+                <div class="main_sec4-box">
+                    <div class="main_sec4-box-info">
+                        <p class="tit">Customer Center</p>
+                       <p class="txt" ><span style="font-size:22px;font-weight:600">Tel : 1544-3218<br> Fax : 0504-277-3218<br></span> 
+						<span style="font-size:18px;font-weight:400">Email : krwater@naver.com</span></p>
+                        <a href="theme/home/sub/introduce.php.html" class="con4-detail"><span>회사소개</span><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+        
+                <div class="main_sec4-box2">
+                    <div class="box-list box-list1">    
+                        <a href="theme/home/sub/pro07.php.html" class="box-item">
+                            <span class="tit">사업소개</span>
+                            <span class="txt">40년 이상의 업력, 국내 환경에 맞는 전문 대용량 심층 지하수 개발 확보</span>
+                            <span class="more-btn">more<i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                        </a>
+                    </div>
+                     <div class="box-list box-list2"> 
+                        <a href="theme/home/sub/map.php.html" class="box-item">
+                            <span class="tit">오시는길</span>
+                            <span class="txt">How to get to  Pinco World</span>
+                            <span class="more-btn">more<i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+</div>
+</div>
+<div id="aside">
+    <div class="mobile_menu">
+        <div id="tnb" class="mobile">
+            
+<!-- 로그인 전 아웃로그인 시작 { -->
+<section id="ol_before" class="ol">
+    <h2>회원로그인</h2>
+<!--
+    <form name="foutlogin" action="https://krwater.co.kr/bbs/login_check.php" onsubmit="return fhead_submit(this);" method="post" autocomplete="off">
+    <fieldset>
+        <div class="ol_wr">
+            <input type="hidden" name="url" value="%2F">
+            <label for="ol_id" id="ol_idlabel" class="sound_only">회원아이디<strong>필수</strong></label>
+            <input type="text" id="ol_id" name="mb_id" required maxlength="20" placeholder="아이디">
+            <label for="ol_pw" id="ol_pwlabel" class="sound_only">비밀번호<strong>필수</strong></label>
+            <input type="password" name="mb_password" id="ol_pw" required maxlength="20" placeholder="비밀번호">
+            <input type="submit" id="ol_submit" value="로그인" class="btn_b02">
+        </div>
+        <div class="ol_auto_wr"> 
+            <div id="ol_auto">
+                <input type="checkbox" name="auto_login" value="1" id="auto_login">
+                <label for="auto_login" id="auto_login_label">자동로그인</label>
+            </div>
+            <div id="ol_svc">
+                <a href="https://krwater.co.kr/bbs/register.php"><b>회원가입</b></a> /
+                <a href="https://krwater.co.kr/bbs/password_lost.php" id="ol_password_lost">정보찾기</a>
+            </div>
+        </div>
+        
+    </fieldset>
+    </form>
+-->
+    <div class="buttons join"><a href="bbs/register.php.html"><i class="fa fa-user-plus" aria-hidden="true"></i> 회원가입</a></div>
+    <div class="buttons login"><a href="bbs/login.php.html"><b><i class="fa fa-sign-in" aria-hidden="true"></i> 로그인</b></a></div>
+</section>
+
+<script>
+$omi = $('#ol_id');
+$omp = $('#ol_pw');
+$omi_label = $('#ol_idlabel');
+$omi_label.addClass('ol_idlabel');
+$omp_label = $('#ol_pwlabel');
+$omp_label.addClass('ol_pwlabel');
+
+$(function() {
+
+    $("#auto_login").click(function(){
+        if ($(this).is(":checked")) {
+            if(!confirm("자동로그인을 사용하시면 다음부터 회원아이디와 비밀번호를 입력하실 필요가 없습니다.\n\n공공장소에서는 개인정보가 유출될 수 있으니 사용을 자제하여 주십시오.\n\n자동로그인을 사용하시겠습니까?"))
+                return false;
+        }
+    });
+});
+
+function fhead_submit(f)
+{
+    return true;
+}
+</script>
+<!-- } 로그인 전 아웃로그인 끝 -->
+        </div>
+        <ul>
+                        <li class="mobile-list">
+                <a href="theme/home/sub/introduce.php.html" target="_self" class="gnb_1da" data-hover="회사소개">회사소개                </a>
+
+                <div class="menu-arrow"> <i class="xi-angle-down-min"></i></div>
+
+                <ul class="mb-submmenu-list">
+                            <li><a href="theme/home/sub/introduce.php.html" target="_self"><i class="xi-subdirectory"></i>인사말</a></li>
+                                                        <li><a href="theme/home/sub/certificate.php.html" target="_self"><i class="xi-subdirectory"></i>인증서</a></li>
+                                                        <li><a href="theme/home/sub/organization.php.html" target="_self"><i class="xi-subdirectory"></i>조직도</a></li>
+                                                        <li><a href="theme/home/sub/map.php.html" target="_self"><i class="xi-subdirectory"></i>오시는길</a></li>
+                            </ul>
+                    </li>
+                        <li class="mobile-list">
+                <a href="theme/home/sub/pro07.php.html" target="_self" class="gnb_1da" data-hover="사업소개">사업소개                </a>
+
+                <div class="menu-arrow"> <i class="xi-angle-down-min"></i></div>
+
+                <ul class="mb-submmenu-list">
+                            <li><a href="theme/home/sub/pro07.php.html" target="_self"><i class="xi-subdirectory"></i>심층지하수 개발</a></li>
+                            </ul>
+                    </li>
+                        <li class="mobile-list">
+                <a href="bbs/board.php@bo_table=gallery.html" target="_self" class="gnb_1da" data-hover="시공사진">시공사진                </a>
+
+                <div class="menu-arrow"> <i class="xi-angle-down-min"></i></div>
+
+                <ul class="mb-submmenu-list">
+                            <li><a href="bbs/board.php@bo_table=gallery.html" target="_self"><i class="xi-subdirectory"></i>갤러리</a></li>
+                            </ul>
+                    </li>
+                        <li class="mobile-list">
+                <a href="bbs/board.php@bo_table=notice.html" target="_self" class="gnb_1da" data-hover="고객센터">고객센터                </a>
+
+                <div class="menu-arrow"> <i class="xi-angle-down-min"></i></div>
+
+                <ul class="mb-submmenu-list">
+                            <li><a href="bbs/board.php@bo_table=notice.html" target="_self"><i class="xi-subdirectory"></i>공지사항</a></li>
+                                                        <li><a href="bbs/board.php@bo_table=news01.html" target="_self"><i class="xi-subdirectory"></i>뉴스</a></li>
+                            </ul>
+                    </li>
+                    </ul>
+    </div>
+</div>
+<div class="mask"></div>
+
+<script>
+    $(function() {
+
+        $('.mobile_menu > ul > li .menu-arrow').click(function() {
+            if (!$(this).parent().hasClass('on')) {
+                $(this).parent().addClass('on');
+                $(this).parent().siblings().removeClass('on');
+                $('.mb-submmenu-list').slideUp();
+                $(this).parent().find('ul').slideDown();
+            } else {
+                $(this).parent().find('ul').slideUp();
+                $(this).parent().removeClass('on');
+            }
+
+           
+
+            return false;
+            $('.mobile_menu > ul > li .menu-arrow')
+        });
+        $('.mobile_menu > ul > li .menu-arrow').bind('touchstart', function(e) {
+            $(this).trigger('click');
+            e.preventDefault();
+        });
+
+        $("#mb-open-menu").click(function() {
+            $("#aside").animate({
+                "right": "0px"
+            }, 200);
+            $(".mask").css('display', 'block');
+
+          /*   $("body").css("position", "fixed"); */
+        });
+
+        $(" .mask").click(function() {
+            $("#aside").animate({
+                "right": "-100%"
+            }, 200);
+
+            $(".mask").css('display', 'none');
+            $("body").css("position", "relative");
+        });
+
+    });
+</script>
+
+
+
+
+</div>
+<!-- } 콘텐츠 끝 -->
+<hr>
+<!-- 하단 시작 { -->
+<div id="ft">
+    <div id="ft_wr">
+        <div class="inner">
+            <div id="ft_link">
+                <!--<a href="/theme/home/sub/introduce.php">인사말</a>
+				<a href="/theme/home/sub/map.php">오시는길</a>
+                
+				<a href="https://krwater.co.kr/bbs/content.php?co_id=provision">이용약관</a>
+                <a href="https://krwater.co.kr/bbs/content.php?co_id=privacy">개인정보처리방침</a>
+                 <a href="https://krwater.co.kr/bbs/content.php?co_id=provision">서비스이용약관</a> -->
+            </div>
+            <div id="ft_company">
+                <ul class="ft_company-info">
+                    <li class="ft_company-info-list">주식회사 대한수자원</li>
+                    <li class="ft_company-info-list">대표 : 박경수</li>
+                    <li class="ft_company-info-list">주소 : [공장] 충북 음성군 감곡면 2659 B동 202호  [사무실] 경기도 하남시 풍산동 527 인스타시트 1136호</li>
+					<li class="ft_company-info-list">사업자번호 : 303-81-30396</li>
+                    <li class="ft_company-info-list">TEL : 1544-3218</li>
+					<li class="ft_company-info-list">FAX : 0504-277-3218</li>
+                    <li class="ft_company-info-list">E-mail : krwater@naver.com</li>
+                    
+                </ul>
+            </div>
+            <div id="ft_copy">Copyright &copy; krwater.co.kr All rights reserved.</div>
+            <!--<div id="ft_logo">
+                <a href="https://krwater.co.kr"><img src="https://krwater.co.kr/theme/home/img/logo.png" alt="대한수자원"></a>
+            </div>-->
+        </div>
+        <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>
+        <script>
+            $(function() {
+                $("#top_btn").on("click", function() {
+                    $("html, body").animate({
+                        scrollTop: 0
+                    }, '500');
+                    return false;
+                });
+            });
+        </script>
+    </div>
+</div>
+<!-- } 하단 끝 -->
+<script>
+    $(function() {
+        // 폰트 리사이즈 쿠키있으면 실행
+        font_resize("container", get_cookie("ck_font_resize_rmv_class"), get_cookie("ck_font_resize_add_class"));
+    });
+</script>
+
+
+
+<!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
+<!--[if lte IE 7]>
+<script>
+$(function() {
+    var $sv_use = $(".sv_use");
+    var count = $sv_use.length;
+
+    $sv_use.each(function() {
+        $(this).css("z-index", count);
+        $(this).css("position", "relative");
+        count = count - 1;
+    });
+});
+</script>
+<![endif]-->
+
+</body>
+</html>
+

@@ -1,0 +1,126 @@
+/*foot.css*/
+#ft {
+    padding: 40px 0;
+    width: 100%;
+    min-width: inherit;
+    text-align: center;
+    background-color: #034c8c;
+  }
+  
+  #ft * {
+    color: #666;
+    font-size: 14px;
+    line-height: 28px;
+    -webkit-transform: skew(-0.1deg);
+    transform: skew(-0.1deg);
+    font-weight: 400;
+    text-align: left;
+  }
+  
+  #ft_logo {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  #ft_link {
+    text-align: left;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+  
+  #ft_link a {
+    padding: 0 12px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 14px;
+  }
+  
+  #ft_company {
+    padding: 20px 0 8px;
+    margin: 0 auto;
+  }
+  
+  #ft_company li {
+    display: block;
+    text-align: left;
+    float: left;
+    line-height: 24px;
+    color: #ffffff;
+  }
+  
+  .ft_company-info li::after {
+    content: '';
+    width: 1px;
+    height: 12px;
+    background: #d3d3d3;
+    display: inline-block;
+    margin: 0 7px;
+  }
+  
+  #ft_company li:nth-child(3) {
+    float: none;
+  }
+  
+  #ft_company li:nth-child(3)::after {
+    display: none;
+  }
+  
+  #ft_company li:last-child::after {
+    display: none;
+  }
+  
+  .ft_company-info::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  
+  #ft_copy {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 768px) {
+    #ft_link {
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+    }
+    #ft_logo {
+      position: relative;
+    }
+    .ft_company-info {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+    }
+    #ft_copy {
+      text-align: center;
+    }
+    #ft_logo {
+      text-align: center;
+    }
+    #ft_logo a {
+      display: inline-block;
+    }
+  }
+  
+  /*# sourceMappingURL=widget.css.map */
+  

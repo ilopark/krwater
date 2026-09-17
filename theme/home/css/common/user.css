@@ -1,0 +1,94 @@
+@charset "UTF-8";
+.scroll-top {
+  z-index: 10;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.scroll-top:hover {
+  cursor: pointer;
+}
+
+.scroll-top-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: url(../../img/common/scroll-top.png);
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+}
+
+/* 그누보드 기본 faq */
+.sub-user-wrap {
+  padding: 40px 0;
+}
+
+.faq_search_form_box {
+  position: relative;
+  padding-right: 45px;
+  border: 1px solid #eaeaea;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#faq_sch .frm_input {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+#faq_sch .btn_submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 18px;
+  height: 45px;
+  width: 45px;
+  color: #141414;
+  background-color: #fff;
+}
+
+#faq_wrap li h3 .tit_bg {
+  font-size: 20px;
+  color: #737373;
+}
+
+#faq_wrap li h3 a {
+  color: #737373;
+}
+
+#faq_wrap li h3 .tit_btn {
+  color: #737373;
+}
+
+#faq_wrap li h3.faq_li_open .tit_bg {
+  color: #141414;
+  font-weight: 700;
+}
+
+#faq_wrap li h3.faq_li_open a {
+  color: #141414;
+  font-weight: 700;
+}
+
+#faq_wrap li h3.faq_li_open .tit_btn {
+  color: #141414;
+}
+
+#faq_con .con_inner {
+  padding: 16px 5px 16px 50px;
+  background-color: #f9f9f9;
+}
+
+#faq_con .con_inner .closer_btn {
+  color: #141414;
+}
+
+#faq_con .con_inner .closer_btn:focus {
+  outline: 0;
+  border: 0;
+}

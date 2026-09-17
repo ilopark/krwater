@@ -1,0 +1,205 @@
+@charset "UTF-8";
+/*reset.css*/
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700,900");
+/* 필요없는 요소 display : none; */
+#aside {
+  display: none;
+}
+
+/* 사이드 메뉴 */
+#top_btn {
+  display: none;
+}
+
+/* go top 버튼*/
+.gnb_menu_btn {
+  display: none;
+}
+
+#popular {
+  display: none;
+}
+
+/* 인기검색어 */
+/* css 초기화 */
+body {
+  background: none;
+}
+
+#tnb {
+  border-bottom: none;
+  background: none;
+}
+
+#tnb li {
+  border-left: none;
+  margin-bottom: 0;
+  font-size: 1em;
+}
+
+#hd {
+  border-top: none;
+  width: 100%;
+}
+
+#hd_wrapper {
+  padding: 0;
+}
+
+@media screen and (max-width: 1199px) {
+  #wrapper {
+    width: 100%;
+    min-width: inherit;
+  }
+}
+
+.hd_sch_wr {
+  top: 0;
+  margin-left: 0;
+}
+
+#container_wr {
+  width: 100%;
+}
+
+#container {
+  margin: 0;
+  width: 100%;
+}
+
+#logo {
+  padding: 0;
+  float: none;
+}
+
+#gnb {
+  height: 100%;
+}
+
+#gnb .gnb_wrap {
+  width: 100%;
+}
+
+#gnb .gnb_mnal {
+  display: none;
+}
+
+#gnb #gnb_1dul {
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+}
+
+#gnb .gnb_1dli {
+  padding: 0;
+}
+
+#gnb .gnb_1dli:hover {
+  background: none;
+  -webkit-transition: none;
+  transition: none;
+}
+
+.gnb_1da {
+  color: #222;
+}
+
+#hd_sch {
+  border: none;
+  background: none;
+  border-radius: 0;
+}
+
+#hd_sch #sch_stx {
+  padding-left: 0;
+  font-size: 1em;
+}
+
+#hd_sch #sch_summit {
+  color: #222;
+  background: none;
+  font-size: 1em;
+}
+
+#ft {
+  border-top: none;
+  background: none;
+  padding-bottom: 0;
+  text-align: left;
+}
+
+#ft_wr {
+  width: 100%;
+}
+
+#ft_link {
+  border-bottom: none;
+  padding: 0;
+}
+
+#ft_link a {
+  padding: 0;
+  line-height: 1em;
+  font-weight: normal;
+}
+
+#ft_copy {
+  color: #222;
+  font-size: 1em;
+}
+
+img, iframe, fieldset, frameset, input, select, option, textarea, button {
+  border: 0 none;
+  border-radius: 0;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+b, strong {
+  font-weight: normal;
+}
+
+address, i, em {
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+a, img, label {
+  display: block;
+}
+
+p, span, a {
+  -webkit-transform: skew(-0.1deg);
+  transform: skew(-0.1deg);
+  word-break: keep-all;
+}
+
+/* 폰트 설정 */
+html, body, table, tr, th, td, input, select, option, textarea, button, label {
+  font-size: 16px;
+  font-family: 'Inter', 'Noto Sans KR' , sans-serif;
+  color: #222;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 16px;
+  font-family: 'Inter', 'Noto Sans KR' , sans-serif;
+  font-weight: normal;
+  color: #222;
+  -webkit-transform: skew(-0.1deg);
+  transform: skew(-0.1deg);
+}
+
+input[type=password] {
+  font-family: 'Inter', 'Noto Sans KR' , sans-serif;
+}
+
+/*# sourceMappingURL=widget.css.map */
