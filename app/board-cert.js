@@ -1,7 +1,7 @@
 // 인증서 — 기존 인증서 화면(그리드) 그대로. 이미지는 그대로 표시, PDF 는 미리보기 영역. 관리자만 등록/수정/삭제
-import { sb, getProfile, humanError } from './supabase.js?v=202609171438';
-import { IMAGE_QUALITY } from './config.js?v=202609171438';
-import { esc, toast, setBusy, resolveUrl, shrinkImage, safeName } from './ui.js?v=202609171438';
+import { sb, getProfile, humanError } from './supabase.js?v=202609171443';
+import { IMAGE_QUALITY } from './config.js?v=202609171443';
+import { esc, toast, setBusy, resolveUrl, shrinkImage, safeName } from './ui.js?v=202609171443';
 
 const BUCKET = 'certificates', MAX_MB = 20, MAX_EDGE = 2000;
 const $ = (id) => document.getElementById(id);
@@ -17,12 +17,16 @@ let items = [];
 function itemHtml(c) {
   const url = resolveUrl(c.url);
   const admin = isAdmin ? `<div class="cert-admin"><a data-act="edit" data-id="${c.id}">수정</a><a data-act="del" data-id="${c.id}" class="app-danger">삭제</a></div>` : '';
-  const body = c.file_type === 'pdf'
-    ? `<iframe class="cert-pdf" src="${esc(url)}#toolbar=0&view=FitH" title="${esc(c.title)}"></iframe>`
-    : `<a href="${esc(url)}" target="_blank" rel="noopener"><img src="${esc(url)}" alt="${esc(c.title)}"></a>`;
-  return `<li class="cert-item" data-id="${c.id}">${admin}${body}
-    <p class="cert-title">${esc(c.title)}</p>${c.description ? `<p class="cert-desc">${esc(c.description)}</p>` : ''}
-    ${c.file_type === 'pdf' ? `<p class="cert-links"><a href="${esc(url)}" target="_blank" rel="noopener">새 창에서 보기</a><a href="${esc(url)}" download>다운로드</a></p>` : ''}
+  // 미리보기 영역(높이 고정): 이미지는 전체가 보이게(contain), PDF 는 1페이지 미리보기. 클릭하면 새 창에서 원본
+  const media = c.file_type === 'pdf'
+    ? `<iframe class="cert-pdf" src="${esc(url)}#toolbar=0&navpanes=0&scrollbar=0&page=1&view=FitH" title="${esc(c.title)}"></iframe>`
+    : `<img src="${esc(url)}" alt="${esc(c.title)}">`;
+  return `<li class="cert-item" data-id="${c.id}">${admin}
+    <div class="cert-media">${media}<a class="cert-open" href="${esc(url)}" target="_blank" rel="noopener" title="새 창에서 보기"></a></div>
+    <div class="cert-text">
+      <p class="cert-title">${esc(c.title)}</p>${c.description ? `<p class="cert-desc">${esc(c.description)}</p>` : ''}
+      <p class="cert-links"><a href="${esc(url)}" target="_blank" rel="noopener">새 창에서 보기</a><a href="${esc(url)}" download>다운로드</a></p>
+    </div>
   </li>`;
 }
 
