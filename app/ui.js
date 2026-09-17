@@ -44,12 +44,13 @@ export async function renderHeader(active = '') {
     <header class="hdr">
       <div class="hdr-inner">
         <a class="brand" href="../index.html" title="사이트 홈으로">
-          <img src="../theme/home/img/logo_b.png" alt="(주)대한수자원">
+          <img src="../theme/home/img/logo_b.png" alt="대한수자원">
         </a>
         <nav class="nav">
           <a href="./notices.html" class="${active === 'notices' ? 'on' : ''}">공지사항</a>
           <a href="./notices.html?category=news" class="${active === 'news' ? 'on' : ''}">뉴스</a>
           <a href="./gallery.html" class="${active === 'gallery' ? 'on' : ''}">갤러리</a>
+          <a href="./certificates.html" class="${active === 'certificates' ? 'on' : ''}">인증서</a>
         </nav>
         <div class="auth">
           ${profile

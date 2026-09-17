@@ -46,13 +46,14 @@ python3 -m http.server 8090 --directory /Users/ilo/dev/krwater
 
 | 파일 | 역할 |
 |---|---|
-| `supabase/schema.sql` | 테이블·RLS 정책·트리거·Storage 버킷 (SQL Editor 에서 1회 실행) |
+| `supabase/schema.sql` | 테이블(profiles·notices·gallery_posts·gallery_media·certificates)·RLS 정책·트리거·Storage 버킷 gallery/certificates (SQL Editor 에서 실행, 재실행 안전) |
 | `app/config.js` | Supabase URL / anon key 등 설정 (**여기만 채우면 됨**) |
 | `app/supabase.js` | 클라이언트, 로그인/가입/프로필 헬퍼 |
 | `app/ui.js`, `app/style.css` | 공통 헤더·유틸·스타일 |
 | `app/login.html`, `app/signup.html` | 로그인(아이디+비밀번호), 회원가입(사용자명·아이디·비밀번호) |
 | `app/notices.html` | 공지사항/뉴스 목록·상세, 관리자 작성·수정·삭제·상단고정 |
 | `app/gallery.html` | 갤러리 목록·상세, 관리자 사진/동영상 업로드·유튜브 링크·삭제 |
+| `app/certificates.html` | 인증서 목록·상세(PDF 미리보기/이미지), 관리자 등록·수정·삭제 |
 | `app/index.html` | 게시판 진입 페이지 |
 
 ### 권한 구조

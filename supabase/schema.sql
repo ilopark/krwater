@@ -276,7 +276,73 @@ create policy "gallery bucket: 관리자 삭제"
   using (bucket_id = 'gallery' and public.is_admin());
 
 -- ---------------------------------------------------------------------
--- 5. 관리자 추가 (첫 가입자 이후에 관리자를 더 두고 싶을 때 수동 실행)
+-- 5. 인증서 (PDF 또는 이미지 1개 + 제목/설명). 관리자만 CRUD, 조회는 누구나
+-- ---------------------------------------------------------------------
+create table if not exists public.certificates (
+  id            bigint generated always as identity primary key,
+  title         text not null check (char_length(title) between 1 and 200),
+  description   text not null default '',
+  file_type     text not null check (file_type in ('pdf', 'image')),
+  storage_path  text not null,          -- Storage 버킷 'certificates' 안의 경로
+  url           text not null,          -- 공개 URL
+  file_name     text,
+  file_size     bigint,
+  sort_order    integer not null default 0,
+  author_id     uuid references public.profiles (id) on delete set null,
+  author_name   text,
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now()
+);
+create index if not exists certificates_order_idx on public.certificates (sort_order, created_at desc);
+
+drop trigger if exists certificates_set_updated_at on public.certificates;
+create trigger certificates_set_updated_at
+  before update on public.certificates
+  for each row execute function public.set_updated_at();
+
+alter table public.certificates enable row level security;
+
+drop policy if exists "certificates: 누구나 조회" on public.certificates;
+create policy "certificates: 누구나 조회"
+  on public.certificates for select to anon, authenticated using (true);
+drop policy if exists "certificates: 관리자 작성" on public.certificates;
+create policy "certificates: 관리자 작성"
+  on public.certificates for insert to authenticated with check (public.is_admin());
+drop policy if exists "certificates: 관리자 수정" on public.certificates;
+create policy "certificates: 관리자 수정"
+  on public.certificates for update to authenticated using (public.is_admin()) with check (public.is_admin());
+drop policy if exists "certificates: 관리자 삭제" on public.certificates;
+create policy "certificates: 관리자 삭제"
+  on public.certificates for delete to authenticated using (public.is_admin());
+
+-- Storage 버킷 'certificates' (공개 읽기, 관리자만 업로드/삭제, PDF·이미지만, 파일당 20MB)
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('certificates', 'certificates', true, 20971520, array['application/pdf', 'image/*'])
+on conflict (id) do update
+  set public = excluded.public,
+      file_size_limit = excluded.file_size_limit,
+      allowed_mime_types = excluded.allowed_mime_types;
+
+drop policy if exists "certificates bucket: 누구나 읽기" on storage.objects;
+create policy "certificates bucket: 누구나 읽기"
+  on storage.objects for select to anon, authenticated
+  using (bucket_id = 'certificates');
+drop policy if exists "certificates bucket: 관리자 업로드" on storage.objects;
+create policy "certificates bucket: 관리자 업로드"
+  on storage.objects for insert to authenticated
+  with check (bucket_id = 'certificates' and public.is_admin());
+drop policy if exists "certificates bucket: 관리자 수정" on storage.objects;
+create policy "certificates bucket: 관리자 수정"
+  on storage.objects for update to authenticated
+  using (bucket_id = 'certificates' and public.is_admin())
+  with check (bucket_id = 'certificates' and public.is_admin());
+drop policy if exists "certificates bucket: 관리자 삭제" on storage.objects;
+create policy "certificates bucket: 관리자 삭제"
+  on storage.objects for delete to authenticated
+  using (bucket_id = 'certificates' and public.is_admin());
+
+-- ---------------------------------------------------------------------
+-- 6. 관리자 추가 (첫 가입자 이후에 관리자를 더 두고 싶을 때 수동 실행)
 -- ---------------------------------------------------------------------
 -- update public.profiles set role = 'admin' where username = '아이디';
 -- select id, username, display_name, role, created_at from public.profiles order by created_at;
