@@ -4,7 +4,7 @@ import { GALLERY_BUCKET, MAX_IMAGE_EDGE, IMAGE_QUALITY, MAX_VIDEO_MB, PAGE_SIZE 
 import { esc, nl2br, fmtDate, fmtDateShort, fmtBytes, qs, toast, setBusy, youtubeId, resolveUrl, shrinkImage, safeName } from './ui.js';
 
 const $ = (id) => document.getElementById(id);
-const listEl = $('bo_list'), viewEl = $('bo_v'), formEl = $('bo_w');
+const listEl = $('bo_gall') || $('bo_list'), viewEl = $('bo_v'), formEl = $('bo_w');   // 갤러리 스킨은 #bo_gall
 const show = (which) => { listEl.style.display = which === 'list' ? '' : 'none'; viewEl.style.display = which === 'view' ? '' : 'none'; formEl.style.display = which === 'form' ? '' : 'none'; };
 const storage = sb.storage.from(GALLERY_BUCKET);
 const publicUrl = (path) => storage.getPublicUrl(path).data.publicUrl;
